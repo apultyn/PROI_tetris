@@ -1,5 +1,4 @@
 #include "Tetrominoes.h"
-#include <vector>
 
 void Tetromino::updateMatrix(std::vector<std::vector<int>>& playfield_matrix)
 {
@@ -84,4 +83,16 @@ void Tetromino::transpose_matrix() {
 		}
 	}
 	this->matrix = new_matrix;
+}
+
+std::string Tetromino::toString() {
+	std::stringstream tostring;
+	tostring << '[';
+	for (const auto& row : this->get_matrix()) {
+		for (const auto& val : row) {
+			tostring << val << ',';
+		}
+	}
+	tostring << ']';
+	return tostring.str();
 }

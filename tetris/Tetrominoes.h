@@ -2,6 +2,7 @@
 #include "playfield_dimensions.h"
 #include <vector>
 #include <string>
+#include <sstream>
 
 class Tetromino
 {
@@ -14,4 +15,5 @@ public:
 	void rotate_right();
 	void updateMatrix(std::vector<std::vector<int>>&);
 	void transpose_matrix();
+	std::string toString();
 };
