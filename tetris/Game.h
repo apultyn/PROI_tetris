@@ -8,7 +8,7 @@
 class Game
 {
 public:
-	//void drawTetrominoe(Tetrominoes&);
+	void drawTetromino(Tetromino&, sf::RenderWindow& window);
 	void drawPlayfield(Playfield&, sf::RenderWindow& window);
 	//void initWindow();
 };
