@@ -1,19 +1,16 @@
 #pragma once
 #include "playfield_dimensions.h"
 #include <vector>
-class Tetrominoes
+
+class Tetromino
 {
 private:
-	// L - piece test
-	int piece[4][4] = {
-  { 0, 0, 0, 0 },
-  { 0, 0, 0, 0 },
-  { 0, 1, 1, 1 },
-  { 0, 0, 0, 1 }
-	};
+	std::vector<std::vector<int>> matrix;
+	void transpose_matrix();
 public:
+	Tetromino(const char& type);
+	std::vector<std::vector<int>> get_matrix() const;
+	void rotate_left();
+	void rotate_right();
 	void updateMatrix(std::vector<std::vector<int>>&);
-	//int getPosX();
-	//int getPosY();
 };
-
