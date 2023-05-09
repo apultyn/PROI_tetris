@@ -77,7 +77,11 @@ Tetromino::Tetromino(const char& type) {
 };
 
 void Tetromino::transpose_matrix() {
-	int new_matrix[4][4];
-	for (int a = 0; a < 3; a++) {
+	std::vector<std::vector<int>> new_matrix;
+	for (int i = 0; i < 4; i++) {
+		for (int j = 0; j < 4; j++) {
+			new_matrix[i][j] = this->get_matrix()[j][i];
+		}
 	}
+	this->matrix = new_matrix;
 }
