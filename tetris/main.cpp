@@ -9,7 +9,7 @@ int main()
 {
     sf::RenderWindow window(sf::VideoMode(WIDTH * RESIZE * CELL_SIZE, VISIBLE_HEIGHT * RESIZE * CELL_SIZE), "Tetris");
     Playfield playfield;
-    Tetrominoes piece;
+    Tetromino piece('I');
     piece.updateMatrix(playfield.getPlayfield()); // places a tetrominoe in matrix
     Game game;
 
