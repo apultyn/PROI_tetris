@@ -364,8 +364,4 @@ FodyWeavers.xsd
 
 .dll
 *.dll
-/tetris/tetris.vcxproj
-/tetris/tetris.vcxproj.filters
-/tetris/tetris.vcxproj.filters
-/tetris/tetris.vcxproj
-/tetris/tetris.vcxproj.filters
+
