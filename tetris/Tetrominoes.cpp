@@ -79,7 +79,7 @@ void Tetromino::transpose_matrix() {
 	std::vector<std::vector<int>> new_matrix;
 	for (int i = 0; i < 4; i++) {
 		for (int j = 0; j < 4; j++) {
-			new_matrix[i][j] = this->get_matrix()[j][i];
+			new_matrix[i][j] = this->matrix[j][i];
 		}
 	}
 	this->matrix = new_matrix;
