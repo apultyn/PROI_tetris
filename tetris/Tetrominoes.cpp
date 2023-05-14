@@ -88,6 +88,28 @@ void Tetromino::transpose_matrix() {
 	memcpy(this->matrix, new_matrix, sizeof(this->matrix));
 };
 
+void Tetromino::rotate_right() {
+	this->transpose_matrix();
+	int new_matrix[4][4];
+	for (int i = 0; i < 4; i++) {
+		for (int j = 0; j < 4; j++) {
+			new_matrix[i][j] = this->matrix[i][3 - j];
+		}
+	}
+	memcpy(this->matrix, new_matrix, sizeof(this->matrix));
+}
+
+void Tetromino::rotate_left() {
+	this->transpose_matrix();
+	int new_matrix[4][4];
+	for (int i = 0; i < 4; i++) {
+		for (int j = 0; j < 4; j++) {
+			new_matrix[i][j] = this->matrix[3 - i][j];
+		}
+	}
+	memcpy(this->matrix, new_matrix, sizeof(this->matrix));
+}
+
 std::string Tetromino::toString() {
 	std::stringstream tostring;
 	tostring << '[';

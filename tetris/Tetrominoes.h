@@ -14,8 +14,8 @@ public:
 		{0, 0, 0, 0}
 	};
 	Tetromino(const char type);
-	//void rotate_left();
-	//void rotate_right();
+	void rotate_left();
+	void rotate_right();
 	//void updateMatrix(std::vector<std::vector<int>>&);
 	void transpose_matrix();
 	std::string toString();
