@@ -1,94 +1,97 @@
 #include "Tetrominoes.h"
 
-void Tetromino::updateMatrix(std::vector<std::vector<int>>& playfield_matrix)
-{
-    // just test
-    for (int i = 0; i < 4; i++) {
-        for (int j = 0; j < 4; j++) {
-            if (this->get_matrix()[i][j] != 0) { // if the square in the piece is not empty
-                playfield_matrix[i][j] = this->get_matrix()[i][j]; // copy the value of the piece square to the corresponding location in the game board
-            }
-        }
-    }
-}
+//void Tetromino::updateMatrix(std::vector<std::vector<int>>& playfield_matrix)
+//{
+//    // just test
+//    for (int i = 0; i < 4; i++) {
+//        for (int j = 0; j < 4; j++) {
+//            if (this->get_matrix()[i][j] != 0) { // if the square in the piece is not empty
+//                playfield_matrix[i][j] = this->get_matrix()[i][j]; // copy the value of the piece square to the corresponding location in the game board
+//            }
+//        }
+//    }
+//}
 
-std::vector<std::vector<int>> Tetromino::get_matrix() const {
-	return this->matrix;
-}
-
-Tetromino::Tetromino(const char& type) {
+Tetromino::Tetromino(const char type) {
 	if (type == 'I') {
-		this->matrix = {
+		int temp[4][4] = {
 			{0, 0, 0, 0},
 			{1, 1, 1, 1},
 			{0, 0, 0, 0},
 			{0, 0, 0, 0}
 		};
+		memcpy(this->matrix, temp, sizeof(this->matrix));
 	}
 	else if (type == 'J') {
-		this->matrix = {
+		int temp[4][4] = {
 			{1, 0, 0, 0},
 			{1, 1, 1, 0},
 			{0, 0, 0, 0},
 			{0, 0, 0, 0}
 		};
+		memcpy(this->matrix, temp, sizeof(this->matrix));
 	}
 	else if (type == 'L') {
-		this->matrix = {
+		int temp[4][4] = {
 			{0, 0, 1, 0},
 			{1, 1, 1, 0},
 			{0, 0, 0, 0},
 			{0, 0, 0, 0}
 		};
+		memcpy(this->matrix, temp, sizeof(this->matrix));
 	}
 	else if (type == 'O') {
-		this->matrix = {
+		int temp[4][4] = {
 			{0, 0, 0, 0},
 			{0, 1, 1, 0},
 			{0, 1, 1, 0},
 			{0, 0, 0, 0}
 		};
+		memcpy(this->matrix, temp, sizeof(this->matrix));
 	}
 	else if (type == 'S') {
-		this->matrix = {
+		int temp[4][4] = {
 			{0, 0, 0, 0},
 			{0, 1, 1, 0},
 			{1, 1, 0, 0},
 			{0, 0, 0, 0}
 		};
+		memcpy(this->matrix, temp, sizeof(this->matrix));
 	}
 	else if (type == 'T') {
-		this->matrix = {
+		int temp[4][4] = {
 			{0, 0, 0, 0},
 			{0, 1, 0, 0},
 			{1, 1, 1, 0},
 			{0, 0, 0, 0}
 		};
+		memcpy(this->matrix, temp, sizeof(this->matrix));
 	}
 	else if (type == 'Z') {
-		this->matrix = {
+		int temp[4][4] = {
 			{0, 0, 0, 0},
 			{1, 1, 0, 0},
 			{0, 1, 1, 0},
 			{0, 0, 0, 0}
 		};
+		memcpy(this->matrix, temp, sizeof(this->matrix));
 	}
 };
 
 void Tetromino::transpose_matrix() {
-	std::vector<std::vector<int>> new_matrix;
+	int new_matrix[4][4];
 	for (int i = 0; i < 4; i++) {
 		for (int j = 0; j < 4; j++) {
 			new_matrix[i][j] = this->matrix[j][i];
 		}
 	}
-	this->matrix = new_matrix;
-}
+	memcpy(this->matrix, new_matrix, sizeof(this->matrix));
+};
 
 std::string Tetromino::toString() {
 	std::stringstream tostring;
 	tostring << '[';
-	for (const auto& row : this->get_matrix()) {
+	for (const auto& row : this->matrix) {
 		for (const auto& val : row) {
 			tostring << val << ',';
 		}

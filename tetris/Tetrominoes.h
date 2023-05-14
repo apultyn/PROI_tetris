@@ -6,14 +6,17 @@
 
 class Tetromino
 {
-private:
-	std::vector<std::vector<int>> matrix;
 public:
-	Tetromino(const char& type);
-	std::vector<std::vector<int>> get_matrix() const;
+	int matrix[4][4] = {
+		{0, 0, 0, 0},
+		{0, 0, 0, 0},
+		{0, 0, 0, 0},
+		{0, 0, 0, 0}
+	};
+	Tetromino(const char type);
 	//void rotate_left();
 	//void rotate_right();
-	void updateMatrix(std::vector<std::vector<int>>&);
+	//void updateMatrix(std::vector<std::vector<int>>&);
 	void transpose_matrix();
 	std::string toString();
 };
