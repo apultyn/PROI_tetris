@@ -177,7 +177,7 @@ namespace Tetrominotest
 			std::string expected = "[0,0,0,0,0,1,0,0,1,1,1,0,0,0,0,0,]";
 			Assert::AreEqual(block.toString(), expected);
 		};
-		TEST_METHOD(RotateFourL)
+		TEST_METHOD(RotateFourT)
 		{
 			Tetromino block = Tetromino('T');
 			block.rotate_right();
@@ -186,6 +186,16 @@ namespace Tetrominotest
 			block.rotate_right();
 			std::string expected = "[0,0,0,0,0,1,0,0,1,1,1,0,0,0,0,0,]";
 			Assert::AreEqual(block.toString(), expected);
+		};
+		TEST_METHOD(RotateThreeLeftEqualOneRight)
+		{
+			Tetromino block_left = Tetromino('S');
+			Tetromino block_right = Tetromino('S');
+			block_left.rotate_left();
+			block_left.rotate_left();
+			block_left.rotate_left();
+			block_right.rotate_right();
+			Assert::AreEqual(block_left.toString(), block_right.toString());
 		};
 	};
 }
