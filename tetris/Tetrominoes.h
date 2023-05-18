@@ -3,9 +3,14 @@
 #include <vector>
 #include <string>
 #include <sstream>
+#include <SFML/Graphics.hpp>
+
 
 class Tetromino
 {
+private:
+	int initX = CELL_SIZE * RESIZE * 3;
+	int initY = - CELL_SIZE * RESIZE * 4;
 public:
 	int matrix[4][4] = {
 		{0, 0, 0, 0},
@@ -19,4 +24,10 @@ public:
 	//void updateMatrix(std::vector<std::vector<int>>&);
 	void transpose_matrix();
 	std::string toString();
+	int getInitX();
+	int getInitY();
+	void moveDown();
+	void moveRight();
+	void moveLeft();
 };
+

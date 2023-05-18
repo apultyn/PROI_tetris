@@ -121,3 +121,28 @@ std::string Tetromino::toString() {
 	tostring << ']';
 	return tostring.str();
 }
+
+int Tetromino::getInitX()
+{
+	return this->initX;
+}
+
+int Tetromino::getInitY()
+{
+	return this->initY;
+}
+
+void Tetromino::moveDown()
+{
+	initY += CELL_SIZE * RESIZE;
+}
+
+void Tetromino::moveRight()
+{
+	initX += CELL_SIZE * RESIZE;
+}
+
+void Tetromino::moveLeft()
+{
+	initX -= CELL_SIZE * RESIZE;
+}
