@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "../tetris/Tetrominoes.cpp"
+#include "../tetris/Tetromino.cpp"
 #include "CppUnitTest.h"
 #include <iostream>
 
@@ -196,6 +196,25 @@ namespace Tetrominotest
 			block_left.rotate_left();
 			block_right.rotate_right();
 			Assert::AreEqual(block_left.toString(), block_right.toString());
+		};
+	};
+	TEST_CLASS(TetrominoTestSetColor)
+	{
+		TEST_METHOD(SetColorOnce)
+		{
+			Tetromino block = Tetromino('T');
+			block.setColor(2);
+			std::string expected = "[0,0,0,0,0,2,0,0,2,2,2,0,0,0,0,0,]";
+			Assert::AreEqual(block.toString(), expected);
+		};
+		TEST_METHOD(DoManyThingsWithMatrix)
+		{
+			Tetromino block = Tetromino('Z');
+			block.setColor(2);
+			block.rotate_right();
+			block.setColor(3);
+			std::string expected = "[0,0,3,0,0,3,3,0,0,3,0,0,0,0,0,0,]";
+			Assert::AreEqual(block.toString(), expected);
 		};
 	};
 }

@@ -29,5 +29,6 @@ public:
 	void moveDown();
 	void moveRight();
 	void moveLeft();
+	void setColor(const unsigned short value);
 };
 
