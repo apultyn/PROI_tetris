@@ -1,6 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include "playfield.h"
-#include "Tetrominoes.h"
+#include "Tetromino.h"
 #include <iostream>
 #include "Game.h"
 #include <chrono>
@@ -24,7 +24,7 @@ int main()
     // print the main matrix in terminal
     for (int i = 0; i < HEIGHT; i++) {
         for (int j = 0; j < WIDTH; j++) {
-            std::cout << playfield.getPlayfield()[i][j];
+            std::cout << playfield.playfield_matrix[i][j];
         }
         std::cout << std::endl;
     }

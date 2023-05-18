@@ -12,7 +12,7 @@ void Game::drawPlayfield(Playfield& playfield, sf::RenderWindow& window)
             square.get()->setPosition(j * CELL_SIZE * RESIZE, i * CELL_SIZE * RESIZE);
             square.get()->setOutlineThickness(-1);
             square.get()->setOutlineColor(sf::Color::Black);
-            if (playfield.getPlayfield()[i][j] == 1)
+            if (playfield.playfield_matrix[i][j] == 1)
             {
                 square.get()->setFillColor(sf::Color::Red);
                

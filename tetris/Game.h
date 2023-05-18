@@ -2,7 +2,7 @@
 #include "playfield.h"
 #include "playfield_dimensions.h"
 #include <SFML/Graphics.hpp>
-#include "Tetrominoes.h"
+#include "Tetromino.h"
 
 
 class Game
