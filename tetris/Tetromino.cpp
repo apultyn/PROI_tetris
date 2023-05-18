@@ -135,16 +135,27 @@ int Tetromino::getInitY()
 void Tetromino::moveDown()
 {
 	initY += CELL_SIZE * RESIZE;
+	posX += 1;
 }
 
 void Tetromino::moveRight()
 {
 	initX += CELL_SIZE * RESIZE;
+	posX += 1;
 }
 
 void Tetromino::moveLeft()
 {
 	initX -= CELL_SIZE * RESIZE;
+	posX -= 1;
+}
+
+int Tetromino::getPosX() const {
+	return posX;
+}
+
+int Tetromino::getPosY() const {
+	return posY;
 }
 
 void Tetromino::setColor(const unsigned short value) 

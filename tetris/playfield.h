@@ -1,15 +1,13 @@
 #pragma once
 #include "playfield_dimensions.h"
-#include <vector>
+#include "Tetromino.h"
 
 class Playfield
 {
 public:
     int playfield_matrix[HEIGHT][WIDTH] = { 0 };
-    Playfield() {
-        //int new_matrix[WIDTH][HEIGHT] ;
-        //memcpy(this->playfield_matrix, new_matrix, sizeof(this->playfield_matrix));
-    }
+    Playfield() {};
+    bool correctPos(const Tetromino&);
 
     // checking if game is over
     // deleting a line(s)
