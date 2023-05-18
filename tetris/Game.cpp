@@ -1,24 +1,27 @@
 #include "Game.h"
+#include <chrono>
+#include <thread>
 
 
 void Game::drawPlayfield(Playfield& playfield, sf::RenderWindow& window)
 {
-    sf::RectangleShape square(sf::Vector2f(CELL_SIZE * RESIZE, CELL_SIZE * RESIZE));
+    std::unique_ptr<sf::RectangleShape> square = std::make_unique<sf::RectangleShape>();
+    square.get()->setSize(sf::Vector2f(CELL_SIZE * RESIZE, CELL_SIZE * RESIZE));
     for (int i = 0; i < HEIGHT; i++) {
         for (int j = 0; j < WIDTH; j++) {
-            square.setPosition(j * CELL_SIZE * RESIZE, i * CELL_SIZE * RESIZE);
-            square.setOutlineThickness(-1);
-            square.setOutlineColor(sf::Color::Black);
+            square.get()->setPosition(j * CELL_SIZE * RESIZE, i * CELL_SIZE * RESIZE);
+            square.get()->setOutlineThickness(-1);
+            square.get()->setOutlineColor(sf::Color::Black);
             if (playfield.getPlayfield()[i][j] == 1)
             {
-                square.setFillColor(sf::Color::Red);
+                square.get()->setFillColor(sf::Color::Red);
                
             }
             else
             {
-                square.setFillColor(sf::Color(57, 61, 71));
+                square.get()->setFillColor(sf::Color(57, 61, 71));
             }
-            window.draw(square);
+            window.draw(*square);
         } 
     }
 }
@@ -26,18 +29,20 @@ void Game::drawPlayfield(Playfield& playfield, sf::RenderWindow& window)
 
 void Game::drawTetromino(Tetromino& piece, sf::RenderWindow& window)
 {
-    sf::RectangleShape square(sf::Vector2f(CELL_SIZE * RESIZE, CELL_SIZE * RESIZE));
+    std::unique_ptr<sf::RectangleShape> square= std::make_unique<sf::RectangleShape>();
+    square.get()->setSize(sf::Vector2f(CELL_SIZE * RESIZE, CELL_SIZE * RESIZE));
     for (int i = 0; i < 4; i++)
         for (int j = 0; j < 4; j++)
         {
             if (piece.matrix[i][j] == 1) {
-            square.setPosition(j * CELL_SIZE * RESIZE , i * CELL_SIZE * RESIZE + 2 );
-            square.setOutlineThickness(-1);
-            square.setOutlineColor(sf::Color::Black);
-            square.setFillColor(sf::Color::Red);    
+            square.get()->setPosition(j * CELL_SIZE * RESIZE + piece.getInitX(), i * CELL_SIZE * RESIZE + piece.getInitY());
+            square.get()->setOutlineThickness(-1);
+            square.get()->setOutlineColor(sf::Color::Black);
+            square.get()->setFillColor(sf::Color::Red);    
             }
-            window.draw(square);
+            window.draw(*square);
            
         }
    
 }
+
