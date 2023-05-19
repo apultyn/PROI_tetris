@@ -2,22 +2,21 @@
 
 bool Playfield::correctPos(const Tetromino& tetromino) 
 {
-	for (int i = 0; i < 4; i++) 
+	for (int row = 0; row < 4; row++) 
 	{
-		for (int j = 0; j < 4; j++) 
+		for (int column = 0; column < 4; column++) 
 		{
-			if (tetromino.matrix[i][j] != 0)
+			if (tetromino.matrix[row][column] != 0)
 			{
-				if (i + tetromino.getPosY() < 0 || i + tetromino.getPosY() > 20 || j + tetromino.getPosX() < 0 || j + tetromino.getPosX() > 10)
+				if (row + tetromino.getPosY() < 0 || row + tetromino.getPosY() > 19 || column + tetromino.getPosX() < 0 || column + tetromino.getPosX() > 9)
 				{
 					return false;
 				}
-				else if (tetromino.matrix[i][j] != 0 && this->playfield_matrix[i + tetromino.getPosY()][j + tetromino.getPosX()] != 0)
+				else if (tetromino.matrix[row][column] != 0 && this->playfield_matrix[row + tetromino.getPosY()][column + tetromino.getPosX()] != 0)
 				{
 					return false;
 				}
 			}
-			
 		}
 	}
 	return true;
