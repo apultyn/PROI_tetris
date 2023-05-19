@@ -5,7 +5,7 @@
 #include "Game.h"
 #include <chrono>
 #include <thread>
-
+#include <stdlib.h>
 
 
 int main()
@@ -21,17 +21,22 @@ int main()
     Tetromino piece('Z');
     Game game;
 
-    // print the main matrix in terminal
-    for (int i = 0; i < HEIGHT; i++) {
-        for (int j = 0; j < WIDTH; j++) {
-            std::cout << playfield.playfield_matrix[i][j];
-        }
-        std::cout << std::endl;
-    }
+
+
 
 
     while (window.isOpen())
     {
+        std::system("cls");
+        for (int i = 0; i < HEIGHT; i++) {
+            for (int j = 0; j < WIDTH; j++) {
+                std::cout << playfield.playfield_matrix[i][j];
+            }
+            std::cout << std::endl;
+        }
+
+
+
         sf::Event event;
         while (window.pollEvent(event))
         {
@@ -48,11 +53,15 @@ int main()
  
         while (clock.getElapsedTime().asMilliseconds() <= 500)
         {
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
         {
             piece.rotate_right();
  
             window.clear();
+            if (!playfield.correctPos(piece))
+            {
+                piece.rotate_left();
+            }
             game.drawPlayfield(playfield, window); // prints the matrix
             game.drawTetromino(piece, window);
 
@@ -60,9 +69,13 @@ int main()
 
             break;
         }
-        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
         {
             piece.rotate_left();
+            if (!playfield.correctPos(piece))
+            {
+                piece.rotate_right();
+            }
             window.clear();
             game.drawPlayfield(playfield, window); // prints the matrix
             game.drawTetromino(piece, window);
@@ -72,10 +85,10 @@ int main()
         else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
         {
             piece.moveRight();
-            //if (!playfield.correctPos(piece))
-            //{
-            //    piece.moveLeft();
-            //}
+            if (!playfield.correctPos(piece))
+            {
+                piece.moveLeft();
+            }
             window.clear();
             game.drawPlayfield(playfield, window); // prints the matrix
             game.drawTetromino(piece, window);
@@ -85,10 +98,10 @@ int main()
         else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
         {
             piece.moveLeft();
-            //if (!playfield.correctPos(piece))
-            //{
-            //    piece.moveRight();
-            //}
+            if (!playfield.correctPos(piece))
+            {
+                piece.moveRight();
+            }
             window.clear();
             game.drawPlayfield(playfield, window); // prints the matrix
             game.drawTetromino(piece, window);
@@ -97,8 +110,13 @@ int main()
         
         }
         std::this_thread::sleep_for(std::chrono::milliseconds(500 - clock.getElapsedTime().asMilliseconds()));
+
         piece.moveDown();
-   
+        if (!playfield.correctPos(piece))
+        {
+            piece.moveUp();            
+            playfield.updateMatrix(piece);
+        }
         window.display();
 
 
