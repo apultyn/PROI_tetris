@@ -10,6 +10,10 @@ class Game
 public:
 	void drawTetromino(Tetromino&, sf::RenderWindow& window);
 	void drawPlayfield(Playfield&, sf::RenderWindow& window);
+	Tetromino getNewTetromino();
 	//void initWindow();
+private:
+	enum {BLUE, GREEN, YELLOW, BEER, SALMON} colors;
+
 };
 
