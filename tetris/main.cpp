@@ -18,9 +18,9 @@ int main()
 
     // Piece generator needed
 
-    Tetromino piece('Z');
+    
     Game game;
-
+    Tetromino piece = game.getNewTetromino();
 
 
 
@@ -116,6 +116,7 @@ int main()
         {
             piece.moveUp();            
             playfield.updateMatrix(piece);
+            piece = game.getNewTetromino();
         }
         window.display();
 
