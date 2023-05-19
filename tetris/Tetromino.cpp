@@ -140,7 +140,7 @@ int Tetromino::getInitY()
 void Tetromino::moveDown()
 {
 	initY += CELL_SIZE * RESIZE;
-	posX += 1;
+	posY += 1;
 }
 
 void Tetromino::moveRight()
