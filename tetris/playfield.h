@@ -7,7 +7,7 @@ class Playfield
 public:
     int playfield_matrix[HEIGHT][WIDTH] = { 0 };
     Playfield() {};
-    bool correctPos(const Tetromino&);
+    bool correctPos(const Tetromino& tetromino);
 
     // checking if game is over
     // deleting a line(s)

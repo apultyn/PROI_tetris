@@ -1,7 +1,6 @@
 #include "pch.h"
 #include "../tetris/Tetromino.cpp"
 #include "CppUnitTest.h"
-#include <iostream>
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 

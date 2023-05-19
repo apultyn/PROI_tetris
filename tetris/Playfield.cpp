@@ -6,10 +6,18 @@ bool Playfield::correctPos(const Tetromino& tetromino)
 	{
 		for (int j = 0; j < 4; j++) 
 		{
-			if (tetromino.matrix[i][j] != 0 && this->playfield_matrix[i + tetromino.getPosX()][j + tetromino.getPosY()] != 0) 
+			if (tetromino.matrix[i][j] != 0)
 			{
-				return false;
+				if (i + tetromino.getPosY() < 0 || i + tetromino.getPosY() > 20 || j + tetromino.getPosX() < 0 || j + tetromino.getPosX() > 10)
+				{
+					return false;
+				}
+				else if (tetromino.matrix[i][j] != 0 && this->playfield_matrix[i + tetromino.getPosY()][j + tetromino.getPosX()] != 0)
+				{
+					return false;
+				}
 			}
+			
 		}
 	}
 	return true;
