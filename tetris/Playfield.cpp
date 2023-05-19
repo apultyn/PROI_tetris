@@ -22,6 +22,20 @@ bool Playfield::correctPos(const Tetromino& tetromino)
 	return true;
 };
 
+void Playfield::updateMatrix(const Tetromino& tetromino)
+{
+	for (int row = 0; row < 4; row++)
+	{
+		for (int column = 0; column < 4; column++)
+		{
+			if (tetromino.matrix[row][column] != 0)
+			{
+				this->playfield_matrix[tetromino.getPosY() + row][tetromino.getPosX() + column] = tetromino.matrix[row][column];
+			}
+		}
+	}
+}
+
 //void Playfield::initPlayfield()
 //{
 //	for (int i = 0; i < WIDTH; i++)
