@@ -107,6 +107,21 @@ int main()
             game.drawTetromino(piece, window);
             break;
         }
+        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+        {
+            while (playfield.correctPos(piece))
+            {
+                piece.moveDown();
+            }
+            if (!playfield.correctPos(piece))
+            {
+                piece.moveUp();
+            }
+            window.clear();
+            game.drawPlayfield(playfield, window); // prints the matrix
+            game.drawTetromino(piece, window);
+            break;
+        }
         
         }
         std::this_thread::sleep_for(std::chrono::milliseconds(500 - clock.getElapsedTime().asMilliseconds()));
