@@ -127,32 +127,37 @@ std::string Tetromino::toString() {
 	return tostring.str();
 }
 
-int Tetromino::getInitX()
-{
-	return this->initX;
-}
-
-int Tetromino::getInitY()
-{
-	return this->initY;
-}
+//int Tetromino::getInitX()
+//{
+//	return this->initX;
+//}
+//
+//int Tetromino::getInitY()
+//{
+//	return this->initY;
+//}
 
 void Tetromino::moveDown()
 {
-	initY += CELL_SIZE * RESIZE;
+	//initY += CELL_SIZE * RESIZE;
 	posY += 1;
 }
 
 void Tetromino::moveRight()
 {
-	initX += CELL_SIZE * RESIZE;
+	//initX += CELL_SIZE * RESIZE;
 	posX += 1;
 }
 
 void Tetromino::moveLeft()
 {
-	initX -= CELL_SIZE * RESIZE;
+	//initX -= CELL_SIZE * RESIZE;
 	posX -= 1;
+}
+
+void Tetromino::moveUp()
+{
+	posY -= 1;
 }
 
 int Tetromino::getPosX() const {

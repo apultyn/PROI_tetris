@@ -9,10 +9,10 @@
 class Tetromino
 {
 private:
-	int initX = CELL_SIZE * RESIZE * 3;
-	int initY = - CELL_SIZE * RESIZE * 4;
-	int posX = 0;
-	int posY = 0;
+	//int initX = CELL_SIZE * RESIZE * 3;
+	//int initY = - CELL_SIZE * RESIZE * 4;
+	int posX = 3;
+	int posY = -2;
 public:
 	int matrix[4][4] = {
 		{0, 0, 0, 0},
@@ -34,6 +34,7 @@ public:
 	void moveDown();
 	void moveRight();
 	void moveLeft();
+	void moveUp();
 	void setColor(const unsigned short value);
 };
 
