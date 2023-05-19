@@ -78,6 +78,11 @@ Tetromino::Tetromino(const char type) {
 	}
 };
 
+Tetromino::Tetromino(const char type, int posx, int posy) : Tetromino(type) {
+	this->posX = posx;
+	this->posY = posy;
+};
+
 void Tetromino::transpose_matrix() {
 	int new_matrix[4][4];
 	for (int i = 0; i < 4; i++) {

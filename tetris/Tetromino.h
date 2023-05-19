@@ -21,6 +21,7 @@ public:
 		{0, 0, 0, 0}
 	};
 	Tetromino(const char type);
+	Tetromino(const char type, int posx, int posy);
 	void rotate_left();
 	void rotate_right();
 	//void updateMatrix(std::vector<std::vector<int>>&);
