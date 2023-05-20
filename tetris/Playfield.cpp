@@ -36,6 +36,21 @@ void Playfield::updateMatrix(const Tetromino& tetromino)
 	}
 }
 
+bool Playfield::checkGameOver()
+{
+
+	for (int column = 0; column < WIDTH; column++)
+	{
+		if (this->playfield_matrix[0][column] != 0)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+
+
 //void Playfield::initPlayfield()
 //{
 //	for (int i = 0; i < WIDTH; i++)

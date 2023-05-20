@@ -9,6 +9,7 @@ public:
     Playfield() {};
     bool correctPos(const Tetromino& tetromino);
     void updateMatrix(const Tetromino& tetromino);
+    bool checkGameOver();
 
     // checking if game is over
     // deleting a line(s)
