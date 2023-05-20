@@ -133,6 +133,16 @@ int main()
             playfield.updateMatrix(piece);
             piece = game.getNewTetromino();
         }
+
+        if (playfield.checkGameOver())
+        {
+            
+            window.clear();
+            game.drawPlayfield(playfield, window); 
+            game.drawTetromino(piece, window);
+            window.display();
+            std::this_thread::sleep_for(std::chrono::seconds(10));
+        }
         window.display();
 
 
