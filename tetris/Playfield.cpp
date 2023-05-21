@@ -1,5 +1,16 @@
 #include "Playfield.h"
 
+Playfield::Playfield()
+{
+	for (int i = 0; i < HEIGHT; i++)
+	{
+		for (int j = 0; j < WIDTH; j++)
+		{
+			this->playfield_matrix[i][j] = '0';
+		}
+	}
+};
+
 bool Playfield::correctPos(const Tetromino& tetromino) 
 {
 	for (int row = 0; row < 4; row++) 

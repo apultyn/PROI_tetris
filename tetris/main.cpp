@@ -14,7 +14,7 @@ int main()
     // maybe new class - Window/Menu?
 
     sf::RenderWindow window(sf::VideoMode(WIDTH * RESIZE * CELL_SIZE * 2, VISIBLE_HEIGHT * RESIZE * CELL_SIZE), "Tetris");
-    Playfield playfield;
+    Playfield playfield = Playfield();
 
     // Piece generator needed
 

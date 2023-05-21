@@ -15,10 +15,10 @@ private:
 	int posY = -2;
 public:
 	char matrix[4][4] = {
-		{0, 0, 0, 0},
-		{0, 0, 0, 0},
-		{0, 0, 0, 0},
-		{0, 0, 0, 0}
+		{'0', '0', '0', '0'},
+		{'0', '0', '0', '0'},
+		{'0', '0', '0', '0'},
+		{'0', '0', '0', '0'}
 	};
 	Tetromino(const char type);
 	Tetromino(const char type, int posx, int posy);
