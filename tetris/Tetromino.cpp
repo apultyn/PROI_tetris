@@ -13,7 +13,16 @@
 //}
 
 Tetromino::Tetromino(const char type) {
-	if (type == 1) {
+		/*
+		1 - I
+		2 - J
+		3 - L
+		4 - O
+		5 - S
+		6 - T
+		7 - Z
+		*/
+	if (type == '1') {
 		int temp[4][4] = {
 			{0, 0, 0, 0},
 			{1, 1, 1, 1},
@@ -22,7 +31,7 @@ Tetromino::Tetromino(const char type) {
 		};
 		memcpy(this->matrix, temp, sizeof(this->matrix));
 	}
-	else if (type == 2) {
+	else if (type == '2') {
 		int temp[4][4] = {
 			{1, 0, 0, 0},
 			{1, 1, 1, 0},
@@ -31,7 +40,7 @@ Tetromino::Tetromino(const char type) {
 		};
 		memcpy(this->matrix, temp, sizeof(this->matrix));
 	}
-	else if (type == 3) {
+	else if (type == '3') {
 		int temp[4][4] = {
 			{0, 0, 1, 0},
 			{1, 1, 1, 0},
@@ -40,7 +49,7 @@ Tetromino::Tetromino(const char type) {
 		};
 		memcpy(this->matrix, temp, sizeof(this->matrix));
 	}
-	else if (type == 4) {
+	else if (type == '4') {
 		int temp[4][4] = {
 			{0, 0, 0, 0},
 			{0, 1, 1, 0},
@@ -49,7 +58,7 @@ Tetromino::Tetromino(const char type) {
 		};
 		memcpy(this->matrix, temp, sizeof(this->matrix));
 	}
-	else if (type == 5) {
+	else if (type == '5') {
 		int temp[4][4] = {
 			{0, 0, 0, 0},
 			{0, 1, 1, 0},
@@ -58,7 +67,7 @@ Tetromino::Tetromino(const char type) {
 		};
 		memcpy(this->matrix, temp, sizeof(this->matrix));
 	}
-	else if (type == 6) {
+	else if (type == '6') {
 		int temp[4][4] = {
 			{0, 0, 0, 0},
 			{0, 1, 0, 0},
@@ -67,7 +76,7 @@ Tetromino::Tetromino(const char type) {
 		};
 		memcpy(this->matrix, temp, sizeof(this->matrix));
 	}
-	else if (type == 7) {
+	else if (type == '7') {
 		int temp[4][4] = {
 			{0, 0, 0, 0},
 			{1, 1, 0, 0},
