@@ -6,7 +6,7 @@ bool Playfield::correctPos(const Tetromino& tetromino)
 	{
 		for (int column = 0; column < 4; column++) 
 		{
-			if (tetromino.matrix[row][column] != 0)
+			if (tetromino.matrix[row][column] != '0')
 			{
 				if (row + tetromino.getPosY() < 0 || row + tetromino.getPosY() > 19 || column + tetromino.getPosX() < 0 || column + tetromino.getPosX() > 9)
 				{
@@ -28,7 +28,7 @@ void Playfield::updateMatrix(const Tetromino& tetromino)
 	{
 		for (int column = 0; column < 4; column++)
 		{
-			if (tetromino.matrix[row][column] != 0)
+			if (tetromino.matrix[row][column] != '0')
 			{
 				this->playfield_matrix[tetromino.getPosY() + row][tetromino.getPosX() + column] = tetromino.matrix[row][column];
 			}
@@ -41,7 +41,7 @@ bool Playfield::checkGameOver()
 
 	for (int column = 0; column < WIDTH; column++)
 	{
-		if (this->playfield_matrix[0][column] != 0)
+		if (this->playfield_matrix[0][column] != '0')
 		{
 			return true;
 		}

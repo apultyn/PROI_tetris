@@ -23,65 +23,65 @@ Tetromino::Tetromino(const char type) {
 		7 - Z
 		*/
 	if (type == '1') {
-		int temp[4][4] = {
-			{0, 0, 0, 0},
-			{1, 1, 1, 1},
-			{0, 0, 0, 0},
-			{0, 0, 0, 0}
+		char temp[4][4] = {
+			{'0', '0', '0', '0'},
+			{'1', '1', '1', '1'},
+			{'0', '0', '0', '0'},
+			{'0', '0', '0', '0'}
 		};
 		memcpy(this->matrix, temp, sizeof(this->matrix));
 	}
 	else if (type == '2') {
-		int temp[4][4] = {
-			{1, 0, 0, 0},
-			{1, 1, 1, 0},
-			{0, 0, 0, 0},
-			{0, 0, 0, 0}
+		char temp[4][4] = {
+			{'1', '0', '0', '0'},
+			{'1', '1', '1', '0'},
+			{'0', '0', '0', '0'},
+			{'0', '0', '0', '0'}
 		};
 		memcpy(this->matrix, temp, sizeof(this->matrix));
 	}
 	else if (type == '3') {
-		int temp[4][4] = {
-			{0, 0, 1, 0},
-			{1, 1, 1, 0},
-			{0, 0, 0, 0},
-			{0, 0, 0, 0}
+		char temp[4][4] = {
+			{'0', '0', '1', '0'},
+			{'1', '1', '1', '0'},
+			{'0', '0', '0', '0'},
+			{'0', '0', '0', '0'}
 		};
 		memcpy(this->matrix, temp, sizeof(this->matrix));
 	}
 	else if (type == '4') {
-		int temp[4][4] = {
-			{0, 0, 0, 0},
-			{0, 1, 1, 0},
-			{0, 1, 1, 0},
-			{0, 0, 0, 0}
+		char temp[4][4] = {
+			{'0', '0', '0', '0'},
+			{'0', '1', '1', '0'},
+			{'0', '1', '1', '0'},
+			{'0', '0', '0', '0'}
 		};
 		memcpy(this->matrix, temp, sizeof(this->matrix));
 	}
 	else if (type == '5') {
-		int temp[4][4] = {
-			{0, 0, 0, 0},
-			{0, 1, 1, 0},
-			{1, 1, 0, 0},
-			{0, 0, 0, 0}
+		char temp[4][4] = {
+			{'0', '0', '0', '0'},
+			{'0', '1', '1', '0'},
+			{'1', '1', '0', '0'},
+			{'0', '0', '0', '0'}
 		};
 		memcpy(this->matrix, temp, sizeof(this->matrix));
 	}
 	else if (type == '6') {
-		int temp[4][4] = {
-			{0, 0, 0, 0},
-			{0, 1, 0, 0},
-			{1, 1, 1, 0},
-			{0, 0, 0, 0}
+		char temp[4][4] = {
+			{'0', '0', '0', '0'},
+			{'0', '1', '0', '0'},
+			{'1', '1', '1', '0'},
+			{'0', '0', '0', '0'}
 		};
 		memcpy(this->matrix, temp, sizeof(this->matrix));
 	}
 	else if (type == '7') {
-		int temp[4][4] = {
-			{0, 0, 0, 0},
-			{1, 1, 0, 0},
-			{0, 1, 1, 0},
-			{0, 0, 0, 0}
+		char temp[4][4] = {
+			{'0', '0', '0', '0'},
+			{'1', '1', '0', '0'},
+			{'0', '1', '1', '0'},
+			{'0', '0', '0', '0'}
 		};
 		memcpy(this->matrix, temp, sizeof(this->matrix));
 	}
@@ -93,7 +93,7 @@ Tetromino::Tetromino(const char type, int posx, int posy) : Tetromino(type) {
 };
 
 void Tetromino::transpose_matrix() {
-	int new_matrix[4][4];
+	char new_matrix[4][4];
 	for (int i = 0; i < 4; i++) {
 		for (int j = 0; j < 4; j++) {
 			new_matrix[i][j] = this->matrix[j][i];
@@ -104,7 +104,7 @@ void Tetromino::transpose_matrix() {
 
 void Tetromino::rotate_right() {
 	this->transpose_matrix();
-	int new_matrix[4][4];
+	char new_matrix[4][4];
 	for (int i = 0; i < 4; i++) {
 		for (int j = 0; j < 4; j++) {
 			new_matrix[i][j] = this->matrix[i][3 - j];
@@ -115,7 +115,7 @@ void Tetromino::rotate_right() {
 
 void Tetromino::rotate_left() {
 	this->transpose_matrix();
-	int new_matrix[4][4];
+	char new_matrix[4][4];
 	for (int i = 0; i < 4; i++) {
 		for (int j = 0; j < 4; j++) {
 			new_matrix[i][j] = this->matrix[3 - i][j];
@@ -177,11 +177,11 @@ int Tetromino::getPosY() const {
 	return posY;
 }
 
-void Tetromino::setColor(const unsigned short value) 
+void Tetromino::setColor(const char value) 
 {
 	for (int i = 0; i < 4; i++) {
 		for (int j = 0; j < 4; j++) {
-			if (this->matrix[i][j] != 0) {
+			if (this->matrix[i][j] != '0') {
 				this->matrix[i][j] = value;
 			}
 		}

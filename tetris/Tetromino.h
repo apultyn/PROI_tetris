@@ -14,7 +14,7 @@ private:
 	int posX = 3;
 	int posY = -2;
 public:
-	int matrix[4][4] = {
+	char matrix[4][4] = {
 		{0, 0, 0, 0},
 		{0, 0, 0, 0},
 		{0, 0, 0, 0},
@@ -35,6 +35,6 @@ public:
 	void moveRight();
 	void moveLeft();
 	void moveUp();
-	void setColor(const unsigned short value);
+	void setColor(const char value);
 };
 

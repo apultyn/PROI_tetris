@@ -202,16 +202,16 @@ namespace Tetrominotest
 		TEST_METHOD(SetColorOnce)
 		{
 			Tetromino block = Tetromino('6');
-			block.setColor(2);
+			block.setColor('2');
 			std::string expected = "[0,0,0,0,0,2,0,0,2,2,2,0,0,0,0,0,]";
 			Assert::AreEqual(block.toString(), expected);
 		};
 		TEST_METHOD(DoManyThingsWithMatrix)
 		{
 			Tetromino block = Tetromino('7');
-			block.setColor(2);
+			block.setColor('2');
 			block.rotate_right();
-			block.setColor(3);
+			block.setColor('3');
 			std::string expected = "[0,0,3,0,0,3,3,0,0,3,0,0,0,0,0,0,]";
 			Assert::AreEqual(block.toString(), expected);
 		};
