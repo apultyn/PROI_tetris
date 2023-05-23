@@ -1,4 +1,5 @@
 #include "Playfield.h"
+#include <algorithm>
 
 bool Playfield::correctPos(const Tetromino& tetromino) 
 {
@@ -50,6 +51,17 @@ bool Playfield::checkGameOver()
 }
 
 
+bool Playfield::checkIfDelete()
+{
+	for (int i = 0; i < HEIGHT; i++)
+	{
+		if (std::all_of(playfield_matrix[i], playfield_matrix[i] + WIDTH, [](int x) { return x != 0; }))
+		{
+			return true;
+		}
+	}
+	return false;
+}
 
 //void Playfield::initPlayfield()
 //{
