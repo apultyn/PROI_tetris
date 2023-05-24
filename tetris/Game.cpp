@@ -3,7 +3,7 @@
 #include <thread>
 #include <stdlib.h>
 
-void Game::drawPlayfield(Playfield& playfield, sf::RenderWindow& window)
+void Game::drawPlayfield(const Playfield& playfield, sf::RenderWindow& window)
 {
     std::unique_ptr<sf::RectangleShape> square = std::make_unique<sf::RectangleShape>();
     square.get()->setSize(sf::Vector2f(CELL_SIZE * RESIZE, CELL_SIZE * RESIZE));
@@ -44,7 +44,7 @@ void Game::drawPlayfield(Playfield& playfield, sf::RenderWindow& window)
 }
 
 
-void Game::drawTetromino(Tetromino& piece, sf::RenderWindow& window)
+void Game::drawTetromino(const Tetromino& piece, sf::RenderWindow& window)
 {
     std::unique_ptr<sf::RectangleShape> square= std::make_unique<sf::RectangleShape>();
     square.get()->setSize(sf::Vector2f(CELL_SIZE * RESIZE, CELL_SIZE * RESIZE));
