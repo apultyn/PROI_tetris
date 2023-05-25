@@ -63,6 +63,54 @@ bool Playfield::checkIfDelete()
 	return false;
 }
 
+void Playfield::setRowsToDelete()
+{
+	for (int i = 0; i < HEIGHT; i++)
+	{
+		if (std::all_of(playfield_matrix[i], playfield_matrix[i] + WIDTH, [](int x) { return x != 0; }))
+		{
+			this->del_rows.push_back(i);
+		}
+	}
+}
+
+void Playfield::deleteRows()
+{
+	for (int row : this->del_rows)
+	{
+		for (int i = row; i > 0; i--) {
+			
+			for (int j = 0; j < WIDTH; j++)
+			{
+				this->playfield_matrix[i][j] = this->playfield_matrix[i - 1][j];
+			}
+			
+		}
+	}
+
+	for (int i = 0; i < this->del_rows.size(); i++)
+	{
+		for (int j = 0; j < WIDTH; j++)
+		{
+			this->playfield_matrix[i][j] = 0;
+		}
+	}
+
+	this->del_rows.clear();
+	this->score += this->del_rows.size() * 100;
+
+}
+
+
+std::vector<int> Playfield::getRowsToDelete()
+{
+	return this->del_rows;
+}
+
+int Playfield::getScore()
+{
+	return this->score;
+}
 //void Playfield::initPlayfield()
 //{
 //	for (int i = 0; i < WIDTH; i++)
