@@ -24,18 +24,18 @@ Tetromino::Tetromino(const char type) {
 	}
 	else if (type == 2) {
 		int temp[4][4] = {
+			{0, 0, 0, 0},
 			{1, 0, 0, 0},
 			{1, 1, 1, 0},
-			{0, 0, 0, 0},
 			{0, 0, 0, 0}
 		};
 		memcpy(this->matrix, temp, sizeof(this->matrix));
 	}
 	else if (type == 3) {
 		int temp[4][4] = {
+			{0, 0, 0, 0},
 			{0, 0, 1, 0},
 			{1, 1, 1, 0},
-			{0, 0, 0, 0},
 			{0, 0, 0, 0}
 		};
 		memcpy(this->matrix, temp, sizeof(this->matrix));
