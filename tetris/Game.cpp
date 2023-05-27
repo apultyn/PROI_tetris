@@ -181,6 +181,13 @@ void Game::startGame()
     window->setFramerateLimit(30);
     Tetromino piece = this->getNewTetromino();
     sf::Clock clock;
+    sf::Text text;
+    sf::Font font;
+    font.loadFromFile("Quicklime-Regular.ttf");
+    text.setFillColor(sf::Color::White);
+    text.setFont(font);
+    text.setString("YOUR SCORE: " + std::to_string(playfield.getScore()));
+    text.setPosition({ 576, 480 });
 
     while (window->isOpen())
     {
@@ -255,13 +262,14 @@ void Game::startGame()
                     playfield.setRowsToDelete();
                     this->deleteAnimation(playfield.getRowsToDelete(), playfield);
                     playfield.deleteRows();
+                    text.setString("YOUR SCORE: " + std::to_string(playfield.getScore()));
 
                 }
                 piece = this->getNewTetromino();
             }
             clock.restart();
         }
-
+        window->draw(text);
         if (playfield.checkGameOver())
         {
 
