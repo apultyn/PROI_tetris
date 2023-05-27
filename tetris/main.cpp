@@ -11,16 +11,10 @@
 int main()
 {
 
-    // maybe new class - Window/Menu?
-
     sf::RenderWindow window(sf::VideoMode(WIDTH * RESIZE * CELL_SIZE * 2, VISIBLE_HEIGHT * RESIZE * CELL_SIZE), "Tetris");
     Playfield playfield;
 
     window.setFramerateLimit(30);
-
-
-    // Piece generator needed
-
     
     Game game;
     Tetromino piece = game.getNewTetromino();
@@ -31,9 +25,6 @@ int main()
     while (window.isOpen())
     {
 
-
-
-
         sf::Event event;
         while (window.pollEvent(event))
         {
@@ -41,12 +32,10 @@ int main()
                 window.close();
         }
         window.clear();                 
-        game.drawPlayfield(playfield, window); // prints the matrix
+        game.drawPlayfield(playfield, window);
         game.drawTetromino(piece, window);
         
-       
-        // have to change waiting time
-        // maybe move it to another class?
+
         
         if (event.type == sf::Event::KeyPressed)
         {
@@ -88,12 +77,12 @@ int main()
                 break;
 
             }
-            game.drawPlayfield(playfield, window); // prints the matrix
+            
+            game.drawPlayfield(playfield, window); 
             game.drawTetromino(piece, window);
             std::this_thread::sleep_for(std::chrono::milliseconds(50));
         }
-
-       
+        
         if (clock.getElapsedTime().asMilliseconds() >= 500)
         {
             piece.moveDown();
@@ -102,27 +91,29 @@ int main()
             {
                 piece.moveUp();            
                 playfield.updateMatrix(piece);
+                //window.clear();
+
                 if (playfield.checkIfDelete())
                 {
                      playfield.setRowsToDelete();
-
-                        
-                     game.deleteAnimation(playfield.getRowsToDelete(), window);
-                   
+                     //window.clear();
+                     //game.drawPlayfield(playfield, window);
                      
+  
+                     game.deleteAnimation(playfield.getRowsToDelete(), window, playfield);
+                     //game.deleteAnimation(playfield.getRowsToDelete(), window);
+                     //window.display();
+                     //std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 
+
+            
+                   
+              
                      playfield.deleteRows();
                       
                      
                 }
                 piece = game.getNewTetromino();
-                std::system("cls");
-                for (int i = 0; i < HEIGHT; i++) {                      // prints matrix in terminal
-                    for (int j = 0; j < WIDTH; j++) {
-                        std::cout << playfield.playfield_matrix[i][j];
-                    }
-                    std::cout << std::endl;
-                }
             }
             clock.restart();
         }
@@ -134,7 +125,6 @@ int main()
             
             std::this_thread::sleep_for(std::chrono::seconds(10));
         }
-        
         window.display();
 
 
