@@ -8,14 +8,14 @@
 class Game
 {
 public:
-	void drawTetromino(const Tetromino&);
-	void drawPlayfield(const Playfield&);
-	Tetromino getNewTetromino();
-	void deleteAnimation(const std::vector<int>&, const Playfield&);
+	void drawTetromino(const Tetromino&) const;
+	void drawPlayfield(const Playfield&) const;
+	Tetromino getNewTetromino() const;
+	void deleteAnimation(const std::vector<int>&, const Playfield&) const;
 	void initWindow();
 	void setPlayfield(const Playfield&);
 	void startGame();
-	sf::RenderWindow* getWindow();
+	sf::RenderWindow* getWindow() const;
 private:
 	enum {BLUE, GREEN, YELLOW, BEER, SALMON} colors;
 	Playfield playfield;

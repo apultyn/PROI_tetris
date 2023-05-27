@@ -4,15 +4,16 @@
 #include <stdlib.h>
 #include <time.h>
 
-void Game::drawPlayfield(const Playfield& playfield)
+void Game::drawPlayfield(const Playfield& playfield) const
 {
     sf::RectangleShape square;
     square.setSize(sf::Vector2f(CELL_SIZE * RESIZE, CELL_SIZE * RESIZE));
+    square.setOutlineThickness(-1);
+    square.setOutlineColor(sf::Color::Black);
     for (int i = 0; i < HEIGHT; i++) {
         for (int j = 0; j < WIDTH; j++) {
             square.setPosition(j * CELL_SIZE * RESIZE, i * CELL_SIZE * RESIZE);
-            square.setOutlineThickness(-1);
-            square.setOutlineColor(sf::Color::Black);
+
             int color = playfield.playfield_matrix[i][j];
             if (color == 1)
             {
@@ -45,51 +46,47 @@ void Game::drawPlayfield(const Playfield& playfield)
 }
 
 
-void Game::drawTetromino(const Tetromino& piece)
+void Game::drawTetromino(const Tetromino& piece) const
 {
     sf::RectangleShape square;
-    square.setSize(sf::Vector2f(CELL_SIZE * RESIZE, CELL_SIZE * RESIZE));
+    square.setSize(sf::Vector2f(CELL_SIZE * RESIZE, CELL_SIZE * RESIZE)); 
+    square.setOutlineThickness(-1);
+    square.setOutlineColor(sf::Color::Black);
     for (int i = 0; i < 4; i++)
         for (int j = 0; j < 4; j++)
         {
             int color = piece.matrix[i][j];
-            if (color == 1) {
             square.setPosition((j + piece.getPosX()) * CELL_SIZE * RESIZE , (i + piece.getPosY()) * CELL_SIZE * RESIZE);
-            square.setOutlineThickness(-1);
-            square.setOutlineColor(sf::Color::Black);
+            if (color == 1) {
             square.setFillColor(sf::Color::Red);  
             window->draw(square);
             }
             else if (color == 2)
             {
-                square.setPosition((j + piece.getPosX()) * CELL_SIZE * RESIZE, (i + piece.getPosY()) * CELL_SIZE * RESIZE);
+                
                 square.setFillColor(sf::Color::Blue);
-                square.setOutlineThickness(-1);
-                square.setOutlineColor(sf::Color::Black);
+    
                 window->draw(square);
             }
             else if (color == 3)
             {
-                square.setPosition((j + piece.getPosX()) * CELL_SIZE * RESIZE, (i + piece.getPosY()) * CELL_SIZE * RESIZE);
+   
                 square.setFillColor(sf::Color::Yellow);
-                square.setOutlineThickness(-1);
-                square.setOutlineColor(sf::Color::Black);
+
                 window->draw(square);
             }
             else if (color == 4)
             {
-                square.setPosition((j + piece.getPosX()) * CELL_SIZE * RESIZE, (i + piece.getPosY()) * CELL_SIZE * RESIZE);
+        
                 square.setFillColor(sf::Color::Green);
-                square.setOutlineThickness(-1);
-                square.setOutlineColor(sf::Color::Black);
+            
                 window->draw(square);
             }
             else if (color == 5)
             {
-                square.setPosition((j + piece.getPosX()) * CELL_SIZE * RESIZE, (i + piece.getPosY()) * CELL_SIZE * RESIZE);
+             
                 square.setFillColor(sf::Color::Magenta);
-                square.setOutlineThickness(-1);
-                square.setOutlineColor(sf::Color::Black);
+       
                 window->draw(square);
             }
            
@@ -97,7 +94,7 @@ void Game::drawTetromino(const Tetromino& piece)
    
 }
 
-Tetromino Game::getNewTetromino()
+Tetromino Game::getNewTetromino() const
 {
     std::srand(time(0));
     int type = std::rand() % 7 + 1;
@@ -107,14 +104,13 @@ Tetromino Game::getNewTetromino()
     return tetromino;
 }
 
-void Game::deleteAnimation(const std::vector<int>& rows, const Playfield& playfield)
+void Game::deleteAnimation(const std::vector<int>& rows, const Playfield& playfield) const
 {
 
     sf::RectangleShape square;
     square.setSize(sf::Vector2f(CELL_SIZE * RESIZE, CELL_SIZE * RESIZE));
     square.setOutlineThickness(-1);
     square.setOutlineColor(sf::Color::Black);
-   
     window->clear();
     drawPlayfield(playfield);
          for (int row : rows)
@@ -132,8 +128,6 @@ void Game::deleteAnimation(const std::vector<int>& rows, const Playfield& playfi
         }
     window->display();
     std::this_thread::sleep_for(std::chrono::milliseconds(300));
- 
-
     window->clear();
     drawPlayfield(playfield);
     for (int row : rows)
@@ -149,9 +143,6 @@ void Game::deleteAnimation(const std::vector<int>& rows, const Playfield& playfi
         }
     window->display();
     std::this_thread::sleep_for(std::chrono::milliseconds(300));
-
-
-
     window->clear();
     drawPlayfield(playfield);
     for (int row : rows)
@@ -165,7 +156,6 @@ void Game::deleteAnimation(const std::vector<int>& rows, const Playfield& playfi
             }
 
         }
-
     window->display();
     std::this_thread::sleep_for(std::chrono::milliseconds(300));
     
@@ -181,7 +171,7 @@ void Game::initWindow()
     this->window = std::make_unique<sf::RenderWindow>(sf::VideoMode(WIDTH * RESIZE * CELL_SIZE * 2, VISIBLE_HEIGHT * RESIZE * CELL_SIZE), "Tetris");
 }
 
-sf::RenderWindow* Game::getWindow()
+sf::RenderWindow* Game::getWindow() const
 {
     return this->window.get();
 }
@@ -204,8 +194,6 @@ void Game::startGame()
         window->clear();
         this->drawPlayfield(playfield);
         this->drawTetromino(piece);
-
-
 
         if (event.type == sf::Event::KeyPressed)
         {
@@ -261,26 +249,12 @@ void Game::startGame()
             {
                 piece.moveUp();
                 playfield.updateMatrix(piece);
-                //window.clear();
 
                 if (playfield.checkIfDelete())
                 {
                     playfield.setRowsToDelete();
-                    //window.clear();
-                    //game.drawPlayfield(playfield, window);
-
-
                     this->deleteAnimation(playfield.getRowsToDelete(), playfield);
-                    //game.deleteAnimation(playfield.getRowsToDelete(), window);
-                    //window.display();
-                    //std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-
-
-
-
-
                     playfield.deleteRows();
-
 
                 }
                 piece = this->getNewTetromino();
@@ -288,15 +262,12 @@ void Game::startGame()
             clock.restart();
         }
 
-
-
         if (playfield.checkGameOver())
         {
 
             std::this_thread::sleep_for(std::chrono::seconds(10));
         }
         window->display();
-
 
     }
 }

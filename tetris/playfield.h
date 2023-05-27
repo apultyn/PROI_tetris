@@ -8,23 +8,17 @@ class Playfield
 public:
     int playfield_matrix[HEIGHT][WIDTH] = { 0 };
     Playfield() {};
-    bool correctPos(const Tetromino& tetromino);
+    bool correctPos(const Tetromino& tetromino) const;
     void updateMatrix(const Tetromino& tetromino);
-    bool checkGameOver();
-    bool checkIfDelete();
+    bool checkGameOver() const;
+    bool checkIfDelete() const;
     void setRowsToDelete();
     void deleteRows();
-    std::vector<int> getRowsToDelete();
-    int getScore();
-
-
-    // checking if game is over
-    // deleting a line(s)
-    // checking if movement is possible
-    // color will be represented by numbers 1,2,3...
+    std::vector<int> getRowsToDelete() const;
+    int getScore() const;
 private:
     std::vector<int> del_rows;
     int score;
-	//enum field_status {FREE, FILLED};
+
 };
 

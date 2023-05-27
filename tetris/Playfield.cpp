@@ -1,7 +1,7 @@
 #include "Playfield.h"
 #include <algorithm>
 
-bool Playfield::correctPos(const Tetromino& tetromino) 
+bool Playfield::correctPos(const Tetromino& tetromino) const
 {
 	for (int row = 0; row < 4; row++) 
 	{
@@ -37,7 +37,7 @@ void Playfield::updateMatrix(const Tetromino& tetromino)
 	}
 }
 
-bool Playfield::checkGameOver()
+bool Playfield::checkGameOver() const
 {
 
 	for (int column = 0; column < WIDTH; column++)
@@ -51,7 +51,7 @@ bool Playfield::checkGameOver()
 }
 
 
-bool Playfield::checkIfDelete()
+bool Playfield::checkIfDelete() const
 {
 	for (int i = 0; i < HEIGHT; i++)
 	{
@@ -102,12 +102,12 @@ void Playfield::deleteRows()
 }
 
 
-std::vector<int> Playfield::getRowsToDelete()
+std::vector<int> Playfield::getRowsToDelete() const
 {
 	return this->del_rows;
 }
 
-int Playfield::getScore()
+int Playfield::getScore() const
 {
 	return this->score;
 }
