@@ -9,8 +9,6 @@
 class Tetromino
 {
 private:
-	//int initX = CELL_SIZE * RESIZE * 3;
-	//int initY = - CELL_SIZE * RESIZE * 4;
 	int posX = 3;
 	int posY = -2;
 public:

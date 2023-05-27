@@ -1,16 +1,5 @@
 #include "Tetromino.h"
 
-//void Tetromino::updateMatrix(std::vector<std::vector<int>>& playfield_matrix)
-//{
-//    // just test
-//    for (int i = 0; i < 4; i++) {
-//        for (int j = 0; j < 4; j++) {
-//            if (this->get_matrix()[i][j] != 0) { // if the square in the piece is not empty
-//                playfield_matrix[i][j] = this->get_matrix()[i][j]; // copy the value of the piece square to the corresponding location in the game board
-//            }
-//        }
-//    }
-//}
 
 Tetromino::Tetromino(const char type) {
 	if (type == 1) {
@@ -139,19 +128,16 @@ std::string Tetromino::toString() {
 
 void Tetromino::moveDown()
 {
-	//initY += CELL_SIZE * RESIZE;
 	posY += 1;
 }
 
 void Tetromino::moveRight()
 {
-	//initX += CELL_SIZE * RESIZE;
 	posX += 1;
 }
 
 void Tetromino::moveLeft()
 {
-	//initX -= CELL_SIZE * RESIZE;
 	posX -= 1;
 }
 
