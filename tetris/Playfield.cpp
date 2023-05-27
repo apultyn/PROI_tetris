@@ -95,9 +95,9 @@ void Playfield::deleteRows()
 			this->playfield_matrix[i][j] = 0;
 		}
 	}
-
-	this->del_rows.clear();
 	this->score += this->del_rows.size() * 100;
+	this->del_rows.clear();
+	
 
 }
 
@@ -111,18 +111,6 @@ int Playfield::getScore()
 {
 	return this->score;
 }
-//void Playfield::initPlayfield()
-//{
-//	for (int i = 0; i < WIDTH; i++)
-//		for (int j = 0; j < HEIGHT; j++)
-//			playfield_matrix[i][j] = FREE;
-//
-//}
-//
-//Playfield::Playfield()
-//{
-//	this->initPlayfield();
-//}
 
 
 
