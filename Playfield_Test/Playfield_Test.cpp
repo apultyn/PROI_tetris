@@ -15,7 +15,7 @@ namespace PlayfieldTest
 			Playfield playfield = Playfield();
 			int new_matrix[20][10] = { 0 };
 			memcpy(playfield.playfield_matrix, new_matrix, sizeof(playfield.playfield_matrix));
-			Tetromino block = Tetromino('Z');
+			Tetromino block = Tetromino('7', 3, 0);
 			Assert::IsTrue(playfield.correctPos(block));
 		};
 		TEST_METHOD(CheckOHigh)
@@ -23,7 +23,7 @@ namespace PlayfieldTest
 			Playfield playfield = Playfield();
 			int new_matrix[20][10] = { 0 };
 			memcpy(playfield.playfield_matrix, new_matrix, sizeof(playfield.playfield_matrix));
-			Tetromino block = Tetromino('O', 5, -1);
+			Tetromino block = Tetromino('4', 5, -1);
 			Assert::IsTrue(playfield.correctPos(block));
 		};
 		TEST_METHOD(CheckORight)
@@ -31,7 +31,7 @@ namespace PlayfieldTest
 			Playfield playfield = Playfield();
 			int new_matrix[20][10] = { 0 };
 			memcpy(playfield.playfield_matrix, new_matrix, sizeof(playfield.playfield_matrix));
-			Tetromino block = Tetromino('O', 7, 0);
+			Tetromino block = Tetromino('4', 7, 0);
 			Assert::IsTrue(playfield.correctPos(block));
 		};
 		TEST_METHOD(CheckODown)
@@ -39,7 +39,7 @@ namespace PlayfieldTest
 			Playfield playfield = Playfield();
 			int new_matrix[20][10] = { 0 };
 			memcpy(playfield.playfield_matrix, new_matrix, sizeof(playfield.playfield_matrix));
-			Tetromino block = Tetromino('O', 0, 17);
+			Tetromino block = Tetromino('4', 0, 17);
 			Assert::IsTrue(playfield.correctPos(block));
 		};
 		TEST_METHOD(CheckOLeft)
@@ -47,7 +47,7 @@ namespace PlayfieldTest
 			Playfield playfield = Playfield();
 			int new_matrix[20][10] = { 0 };
 			memcpy(playfield.playfield_matrix, new_matrix, sizeof(playfield.playfield_matrix));
-			Tetromino block = Tetromino('O', -1, 0);
+			Tetromino block = Tetromino('4', -1, 0);
 			Assert::IsTrue(playfield.correctPos(block));
 		};
 		TEST_METHOD(CheckZRotatedHigh) 
@@ -55,7 +55,7 @@ namespace PlayfieldTest
 			Playfield playfield = Playfield();
 			int new_matrix[20][10] = { 0 };
 			memcpy(playfield.playfield_matrix, new_matrix, sizeof(playfield.playfield_matrix));
-			Tetromino block = Tetromino('Z', 5, -1);
+			Tetromino block = Tetromino('7', 5, -1);
 			block.rotate_left();
 			Assert::IsTrue(playfield.correctPos(block));
 		}
@@ -64,7 +64,7 @@ namespace PlayfieldTest
 			Playfield playfield = Playfield();
 			int new_matrix[20][10] = { 0 };
 			memcpy(playfield.playfield_matrix, new_matrix, sizeof(playfield.playfield_matrix));
-			Tetromino block = Tetromino('Z', 7, 10);
+			Tetromino block = Tetromino('7', 7, 10);
 			block.rotate_left();
 			Assert::IsTrue(playfield.correctPos(block));
 		}
@@ -73,7 +73,7 @@ namespace PlayfieldTest
 			Playfield playfield = Playfield();
 			int new_matrix[20][10] = { 0 };
 			memcpy(playfield.playfield_matrix, new_matrix, sizeof(playfield.playfield_matrix));
-			Tetromino block = Tetromino('Z', 4, 16);
+			Tetromino block = Tetromino('7', 4, 16);
 			block.rotate_left();
 			Assert::IsTrue(playfield.correctPos(block));
 		}
@@ -82,7 +82,7 @@ namespace PlayfieldTest
 			Playfield playfield = Playfield();
 			int new_matrix[20][10] = { 0 };
 			memcpy(playfield.playfield_matrix, new_matrix, sizeof(playfield.playfield_matrix));
-			Tetromino block = Tetromino('Z', -1, 12);
+			Tetromino block = Tetromino('7', -1, 12);
 			block.rotate_left();
 			Assert::IsTrue(playfield.correctPos(block));
 		}
@@ -91,7 +91,7 @@ namespace PlayfieldTest
 			Playfield playfield = Playfield();
 			int new_matrix[20][10] = { 0 };
 			memcpy(playfield.playfield_matrix, new_matrix, sizeof(playfield.playfield_matrix));
-			Tetromino block = Tetromino('T', 7, -1);
+			Tetromino block = Tetromino('6', 7, -1);
 			block.rotate_left();
 			Assert::IsTrue(playfield.correctPos(block));
 		}
@@ -100,7 +100,7 @@ namespace PlayfieldTest
 			Playfield playfield = Playfield();
 			int new_matrix[20][10] = { 0 };
 			memcpy(playfield.playfield_matrix, new_matrix, sizeof(playfield.playfield_matrix));
-			Tetromino block = Tetromino('T', 7, 17);
+			Tetromino block = Tetromino('6', 7, 17);
 			block.rotate_right();
 			Assert::IsTrue(playfield.correctPos(block));
 		}
@@ -109,7 +109,7 @@ namespace PlayfieldTest
 			Playfield playfield = Playfield();
 			int new_matrix[20][10] = { 0 };
 			memcpy(playfield.playfield_matrix, new_matrix, sizeof(playfield.playfield_matrix));
-			Tetromino block = Tetromino('T', 2, 17);
+			Tetromino block = Tetromino('6', 2, 17);
 			block.rotate_right();
 			block.rotate_right();
 			Assert::IsTrue(playfield.correctPos(block));
@@ -119,7 +119,7 @@ namespace PlayfieldTest
 			Playfield playfield = Playfield();
 			int new_matrix[20][10] = { 0 };
 			memcpy(playfield.playfield_matrix, new_matrix, sizeof(playfield.playfield_matrix));
-			Tetromino block = Tetromino('T', 2, -1);
+			Tetromino block = Tetromino('6', 2, -1);
 			block.rotate_left();
 			Assert::IsTrue(playfield.correctPos(block));
 		}
@@ -131,87 +131,87 @@ namespace PlayfieldTest
 		{
 			Playfield playfield = Playfield();
 			int new_matrix[20][10] = {
-				{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-				{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-				{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-				{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-				{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-				{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-				{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-				{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-				{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-				{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-				{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-				{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-				{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-				{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-				{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-				{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-				{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-				{0, 0, 0, 0, 0, 1, 1, 0, 0, 0},
-				{0, 0, 0, 0, 0, 1, 1, 0, 0, 0},
-				{0, 0, 0, 0, 0, 1, 1, 0, 0, 0}
+				{'0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
+				{'0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
+				{'0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
+				{'0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
+				{'0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
+				{'0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
+				{'0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
+				{'0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
+				{'0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
+				{'0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
+				{'0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
+				{'0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
+				{'0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
+				{'0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
+				{'0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
+				{'0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
+				{'0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
+				{'0', '0', '0', '0', '0', '1', '1', '0', '0', '0'},
+				{'0', '0', '0', '0', '0', '1', '1', '0', '0', '0'},
+				{'0', '0', '0', '0', '0', '1', '1', '0', '0', '0'}
 			};
 			memcpy(playfield.playfield_matrix, new_matrix, sizeof(playfield.playfield_matrix));
-			Tetromino block = Tetromino('I', 4, 16);
+			Tetromino block = Tetromino('1', 4, 16);
 			Assert::IsFalse(playfield.correctPos(block));
 		};
 		TEST_METHOD(CollisionWithDifferentColor)
 		{
 			Playfield playfield = Playfield();
 			int new_matrix[20][10] = {
-				{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-				{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-				{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-				{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-				{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-				{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-				{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-				{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-				{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-				{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-				{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-				{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-				{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-				{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-				{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-				{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-				{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-				{0, 0, 0, 0, 0, 2, 8, 0, 0, 0},
-				{0, 0, 0, 0, 0, 3, 9, 0, 0, 0},
-				{0, 0, 0, 0, 0, 5, 2, 0, 0, 0}
+				{'0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
+				{'0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
+				{'0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
+				{'0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
+				{'0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
+				{'0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
+				{'0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
+				{'0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
+				{'0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
+				{'0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
+				{'0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
+				{'0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
+				{'0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
+				{'0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
+				{'0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
+				{'0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
+				{'0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
+				{'0', '0', '0', '0', '0', '2', '8', '0', '0', '0'},
+				{'0', '0', '0', '0', '0', '3', '9', '0', '0', '0'},
+				{'0', '0', '0', '0', '0', '5', '2', '0', '0', '0'}
 			};
 			memcpy(playfield.playfield_matrix, new_matrix, sizeof(playfield.playfield_matrix));
-			Tetromino block = Tetromino('I', 4, 16);
+			Tetromino block = Tetromino('1', 4, 16);
 			Assert::IsFalse(playfield.correctPos(block));
 		};
 		TEST_METHOD(TightSpace)
 		{
 			Playfield playfield = Playfield();
 			int new_matrix[20][10] = {
-				{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-				{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-				{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-				{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-				{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-				{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-				{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-				{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-				{0, 0, 0, 0, 0, 0, 0, 0, 2, 5},
-				{0, 0, 0, 0, 0, 0, 0, 0, 6, 0},
-				{0, 0, 0, 0, 0, 0, 0, 0, 5, 0},
-				{0, 0, 0, 0, 0, 0, 0, 2, 1, 0},
-				{0, 0, 0, 0, 0, 0, 0, 5, 2, 0},
-				{0, 0, 0, 0, 0, 0, 0, 0, 7, 2},
-				{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-				{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-				{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-				{0, 0, 0, 0, 0, 2, 8, 0, 0, 0},
-				{0, 0, 0, 0, 0, 3, 9, 0, 0, 0},
-				{0, 0, 0, 0, 0, 5, 2, 0, 0, 0}
+				{'0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
+				{'0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
+				{'0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
+				{'0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
+				{'0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
+				{'0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
+				{'0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
+				{'0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
+				{'0', '0', '0', '0', '0', '0', '0', '0', '2', '5'},
+				{'0', '0', '0', '0', '0', '0', '0', '0', '6', '0'},
+				{'0', '0', '0', '0', '0', '0', '0', '0', '5', '0'},
+				{'0', '0', '0', '0', '0', '0', '0', '2', '1', '0'},
+				{'0', '0', '0', '0', '0', '0', '0', '5', '2', '0'},
+				{'0', '0', '0', '0', '0', '0', '0', '0', '7', '2'},
+				{'0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
+				{'0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
+				{'0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
+				{'0', '0', '0', '0', '0', '2', '8', '0', '0', '0'},
+				{'0', '0', '0', '0', '0', '3', '9', '0', '0', '0'},
+				{'0', '0', '0', '0', '0', '5', '2', '0', '0', '0'}
 			};
 			memcpy(playfield.playfield_matrix, new_matrix, sizeof(playfield.playfield_matrix));
-			Tetromino block = Tetromino('I', 8, 9);
+			Tetromino block = Tetromino('1', 8, 9);
 			block.rotate_left();
 			Assert::IsTrue(playfield.correctPos(block));
 		};
@@ -219,29 +219,29 @@ namespace PlayfieldTest
 		{
 			Playfield playfield = Playfield();
 			int new_matrix[20][10] = {
-				{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-				{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-				{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-				{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-				{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-				{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-				{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-				{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-				{0, 0, 0, 0, 0, 0, 0, 0, 2, 5},
-				{0, 0, 0, 0, 0, 0, 0, 0, 6, 0},
-				{0, 0, 0, 0, 0, 0, 0, 0, 5, 0},
-				{0, 0, 0, 0, 0, 0, 0, 2, 1, 0},
-				{0, 0, 0, 0, 0, 0, 0, 5, 2, 0},
-				{0, 0, 0, 0, 0, 0, 0, 0, 7, 2},
-				{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-				{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-				{0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-				{0, 0, 0, 0, 0, 2, 8, 0, 0, 0},
-				{0, 0, 0, 0, 0, 3, 9, 0, 0, 0},
-				{0, 0, 0, 0, 0, 5, 2, 0, 0, 0}
+				{'0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
+				{'0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
+				{'0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
+				{'0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
+				{'0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
+				{'0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
+				{'0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
+				{'0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
+				{'0', '0', '0', '0', '0', '0', '0', '0', '2', '5'},
+				{'0', '0', '0', '0', '0', '0', '0', '0', '6', '0'},
+				{'0', '0', '0', '0', '0', '0', '0', '0', '5', '0'},
+				{'0', '0', '0', '0', '0', '0', '0', '2', '1', '0'},
+				{'0', '0', '0', '0', '0', '0', '0', '5', '2', '0'},
+				{'0', '0', '0', '0', '0', '0', '0', '0', '7', '2'},
+				{'0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
+				{'0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
+				{'0', '0', '0', '0', '0', '0', '0', '0', '0', '0'},
+				{'0', '0', '0', '0', '0', '2', '8', '0', '0', '0'},
+				{'0', '0', '0', '0', '0', '3', '9', '0', '0', '0'},
+				{'0', '0', '0', '0', '0', '5', '2', '0', '0', '0'}
 			};
 			memcpy(playfield.playfield_matrix, new_matrix, sizeof(playfield.playfield_matrix));
-			Tetromino block = Tetromino('I', 8, 8);
+			Tetromino block = Tetromino('1', 8, 8);
 			Assert::IsFalse(playfield.correctPos(block));
 		};
 	};
