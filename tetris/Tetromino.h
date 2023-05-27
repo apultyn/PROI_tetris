@@ -9,8 +9,8 @@
 class Tetromino
 {
 private:
-	int posX = 3;
-	int posY = -2;
+	int posX = INIT_X;
+	int posY = INIT_Y;
 public:
 	int matrix[4][4] = {
 		{0, 0, 0, 0},
