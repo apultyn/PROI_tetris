@@ -107,17 +107,17 @@ Tetromino Game::getNewTetromino()
     return tetromino;
 }
 
-void Game::deleteAnimation(const std::vector<int>& rows, sf::RenderWindow& window)
+void Game::deleteAnimation(const std::vector<int>& rows, sf::RenderWindow& window, const Playfield& playfield)
 {
 
     sf::RectangleShape square;
     square.setSize(sf::Vector2f(CELL_SIZE * RESIZE, CELL_SIZE * RESIZE));
     square.setOutlineThickness(-1);
     square.setOutlineColor(sf::Color::Black);
-    sf::Clock clock;
-    while (clock.getElapsedTime().asMilliseconds() < 200)
-    {
-        for (int row : rows)
+   
+    window.clear();
+    drawPlayfield(playfield, window);
+         for (int row : rows)
         {
 
             for (int j = 0; j < WIDTH; j++)
@@ -125,15 +125,18 @@ void Game::deleteAnimation(const std::vector<int>& rows, sf::RenderWindow& windo
                 square.setPosition(j * CELL_SIZE * RESIZE, row  * CELL_SIZE * RESIZE);
                 square.setFillColor(sf::Color::White);
                 window.draw(square);
+                
             }
+            
 
         }
-        window.display();
-    }
-    clock.restart();
-    while (clock.getElapsedTime().asMilliseconds() < 200)
-    {
-        for (int row : rows)
+    window.display();
+    std::this_thread::sleep_for(std::chrono::milliseconds(300));
+ 
+
+    window.clear();
+    drawPlayfield(playfield, window);
+    for (int row : rows)
         {
 
             for (int j = 0; j < WIDTH; j++)
@@ -144,12 +147,14 @@ void Game::deleteAnimation(const std::vector<int>& rows, sf::RenderWindow& windo
             }
 
         }
-        window.display();
-    }
-    clock.restart();
-    while (clock.getElapsedTime().asMilliseconds() < 200)
-    {
-        for (int row : rows)
+    window.display();
+    std::this_thread::sleep_for(std::chrono::milliseconds(300));
+
+
+
+    window.clear();
+    drawPlayfield(playfield, window);
+    for (int row : rows)
         {
 
             for (int j = 0; j < WIDTH; j++)
@@ -160,7 +165,8 @@ void Game::deleteAnimation(const std::vector<int>& rows, sf::RenderWindow& windo
             }
 
         }
-        window.display();
-    }
 
+    window.display();
+    std::this_thread::sleep_for(std::chrono::milliseconds(300));
+    
 }
