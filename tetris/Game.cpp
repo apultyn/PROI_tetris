@@ -232,7 +232,11 @@ void Game::startGame()
                 piece.rotate_right();
                 if (!playfield.correctPos(piece))
                 {
-                    if (piece.getPosX() < 0)
+                    if (piece.getPosY() < 0)
+                    {
+                        piece.rotate_left();
+                    }
+                    else if (piece.getPosX() < 0)
                     {
                         piece.moveRight();
                         if (!playfield.correctPos(piece))
