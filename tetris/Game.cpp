@@ -3,6 +3,7 @@
 #include <thread>
 #include <stdlib.h>
 #include <time.h>
+#include <fstream>
 
 sf::Color getColor(const int& color);
 
@@ -309,7 +310,22 @@ void Game::startGame()
         window->draw(text);
         if (playfield.checkGameOver())
         {
+            std::ifstream inputFile("highscore.txt");
+            if (inputFile.is_open())
+            {
+                int highscore;
+                inputFile >> highscore;
+                inputFile.close();
 
+                if (playfield.getScore() > highscore)
+                {
+                    highscore = playfield.getScore();
+
+                    std::ofstream outputFile("highscore.txt");
+                    outputFile << highscore;
+                    outputFile.close();
+                }
+            }
             std::this_thread::sleep_for(std::chrono::seconds(5));
             window->close();
         }
