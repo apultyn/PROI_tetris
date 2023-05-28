@@ -17,7 +17,7 @@ public:
 	void startGame();
 	sf::RenderWindow* getWindow() const;
 private:
-	enum {BLUE, GREEN, YELLOW, BEER, SALMON} colors;
+/*	enum {BLUE, GREEN, YELLOW, BEER, SALMON} colors*/;
 	Playfield playfield;
 	std::unique_ptr<sf::RenderWindow> window;
 };

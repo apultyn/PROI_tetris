@@ -4,6 +4,8 @@
 #include <stdlib.h>
 #include <time.h>
 
+sf::Color getColor(const int& color);
+
 void Game::drawPlayfield(const Playfield& playfield) const
 {
     sf::RectangleShape square;
@@ -12,39 +14,70 @@ void Game::drawPlayfield(const Playfield& playfield) const
     square.setOutlineColor(sf::Color::Black);
     for (int i = 0; i < HEIGHT; i++) {
         for (int j = 0; j < WIDTH; j++) {
+
             square.setPosition(j * CELL_SIZE * RESIZE, i * CELL_SIZE * RESIZE);
-
             int color = playfield.playfield_matrix[i][j];
-            if (color == 1)
-            {
-                square.setFillColor(sf::Color::Red);
-
-            }
-            else if (color == 2)
-            {
-                square.setFillColor(sf::Color::Blue);
-            }
-            else if (color == 3)
-            {
-                square.setFillColor(sf::Color::Yellow);
-            }
-            else if (color == 4)
-            {
-                square.setFillColor(sf::Color::Green);
-            }
-            else if (color == 5)
-            {
-                square.setFillColor(sf::Color::Magenta);
-            }
-            else if (color == 0)
-            {
-                square.setFillColor(sf::Color(57, 61, 71));
-            }
+            sf::Color square_color = getColor(color);
+            square.setFillColor(square_color);
             window->draw(square);
         } 
     }
 }
 
+
+sf::Color getColor(const int& color)
+{
+    switch (color)
+    {
+    case GREY:
+        return GREY_COLOR;
+      
+    case SALMON:
+        return SALMON_COLOR;
+        break;
+    case ORANGE:
+        return ORANGE_COLOR;
+       
+    case YELLOW:
+        return YELLOW_COLOR;
+        
+    case GREEN:
+        return GREEN_COLOR;
+      
+    case CYAN:
+        return CYAN_COLOR;
+       
+    case PURPLE:
+        return PURPLE_COLOR;
+        
+    case RED:
+        return RED_COLOR;
+      
+    case DARK_ORANGE:
+        return DARK_ORANGE_COLOR;
+      
+    case SANDY_BROWN:
+        return SANDY_BROWN_COLOR;
+       
+    case DARK_GREEN:
+        return DARK_GREEN_COLOR;
+        
+    case BLUE:
+        return BLUE_COLOR;
+      
+    case DARK_PURPLE:
+        return DARK_PURPLE_COLOR;
+       
+    case NAVY:
+        return NAVY_COLOR;
+        
+    case DARK_MEDIUM_BLUE:
+        return DARK_MEDIUM_BLUE_COLOR;
+     
+    }
+    
+
+}
 
 void Game::drawTetromino(const Tetromino& piece) const
 {
@@ -56,40 +89,13 @@ void Game::drawTetromino(const Tetromino& piece) const
         for (int j = 0; j < 4; j++)
         {
             int color = piece.matrix[i][j];
-            square.setPosition((j + piece.getPosX()) * CELL_SIZE * RESIZE , (i + piece.getPosY()) * CELL_SIZE * RESIZE);
-            if (color == 1) {
-            square.setFillColor(sf::Color::Red);  
-            window->draw(square);
-            }
-            else if (color == 2)
-            {
-                
-                square.setFillColor(sf::Color::Blue);
-    
-                window->draw(square);
-            }
-            else if (color == 3)
-            {
-   
-                square.setFillColor(sf::Color::Yellow);
 
+            square.setPosition((j + piece.getPosX()) * CELL_SIZE * RESIZE , (i + piece.getPosY()) * CELL_SIZE * RESIZE);
+            sf::Color square_color = getColor(color);
+            square.setFillColor(square_color);
+            if(color != GREY)
                 window->draw(square);
-            }
-            else if (color == 4)
-            {
-        
-                square.setFillColor(sf::Color::Green);
-            
-                window->draw(square);
-            }
-            else if (color == 5)
-            {
-             
-                square.setFillColor(sf::Color::Magenta);
-       
-                window->draw(square);
-            }
-           
+     
         }
    
 }
@@ -99,7 +105,7 @@ Tetromino Game::getNewTetromino() const
     std::srand(time(0));
     int type = std::rand() % 7 + 1;
     Tetromino tetromino(type);
-    int color = std::rand() % 5 + 1;
+    int color = std::rand() % 14 + 1;
     tetromino.setColor(color);
     return tetromino;
 }
@@ -111,6 +117,7 @@ void Game::deleteAnimation(const std::vector<int>& rows, const Playfield& playfi
     square.setSize(sf::Vector2f(CELL_SIZE * RESIZE, CELL_SIZE * RESIZE));
     square.setOutlineThickness(-1);
     square.setOutlineColor(sf::Color::Black);
+    square.setFillColor(sf::Color::White);
     window->clear();
     drawPlayfield(playfield);
          for (int row : rows)
@@ -119,7 +126,6 @@ void Game::deleteAnimation(const std::vector<int>& rows, const Playfield& playfi
             for (int j = 0; j < WIDTH; j++)
             {
                 square.setPosition(j * CELL_SIZE * RESIZE, row  * CELL_SIZE * RESIZE);
-                square.setFillColor(sf::Color::White);
                 window->draw(square);
                 
             }
@@ -130,13 +136,13 @@ void Game::deleteAnimation(const std::vector<int>& rows, const Playfield& playfi
     std::this_thread::sleep_for(std::chrono::milliseconds(300));
     window->clear();
     drawPlayfield(playfield);
+    square.setFillColor(GREY_COLOR);
     for (int row : rows)
         {
 
             for (int j = 0; j < WIDTH; j++)
             {
                 square.setPosition(j * CELL_SIZE * RESIZE, row * CELL_SIZE * RESIZE);
-                square.setFillColor(sf::Color(57, 61, 71));
                 window->draw(square);
             }
 
@@ -144,14 +150,14 @@ void Game::deleteAnimation(const std::vector<int>& rows, const Playfield& playfi
     window->display();
     std::this_thread::sleep_for(std::chrono::milliseconds(300));
     window->clear();
-    drawPlayfield(playfield);
+    drawPlayfield(playfield); 
+    square.setFillColor(sf::Color::White);
     for (int row : rows)
         {
 
             for (int j = 0; j < WIDTH; j++)
             {
                 square.setPosition(j * CELL_SIZE * RESIZE, row * CELL_SIZE * RESIZE);
-                square.setFillColor(sf::Color::White);
                 window->draw(square);
             }
 
