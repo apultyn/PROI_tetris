@@ -232,7 +232,34 @@ void Game::startGame()
                 piece.rotate_right();
                 if (!playfield.correctPos(piece))
                 {
-                    piece.rotate_left();
+                    if (piece.getPosX() < 0)
+                    {
+                        piece.moveRight();
+                        if (!playfield.correctPos(piece))
+                        {
+                            piece.moveRight();
+                            if (!playfield.correctPos(piece))
+                            {
+                                piece.moveLeft();
+                                piece.moveLeft();
+                                piece.rotate_left();
+                            }
+                        }
+                    }
+                    else if (piece.getPosX() > 6)
+                    {
+                        piece.moveLeft();
+                        if (!playfield.correctPos(piece))
+                        {
+                            piece.moveLeft();
+                            if (!playfield.correctPos(piece))
+                            {
+                                piece.moveRight();
+                                piece.moveRight();
+                                piece.rotate_left();
+                            }
+                        }
+                    }
                 }
                 std::this_thread::sleep_for(std::chrono::milliseconds(50));
                 break;

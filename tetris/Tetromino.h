@@ -25,8 +25,8 @@ public:
 	//void updateMatrix(std::vector<std::vector<int>>&);
 	void transpose_matrix();
 	std::string toString();
-	int getInitX();
-	int getInitY();
+	//int getInitX();
+	//int getInitY();
 	int getPosX() const;
 	int getPosY() const;
 	void moveDown();
