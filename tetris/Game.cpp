@@ -11,7 +11,7 @@ void Game::drawPlayfield(const Playfield& playfield) const
 {
     sf::RectangleShape square;
     square.setSize(sf::Vector2f(CELL_SIZE * RESIZE, CELL_SIZE * RESIZE));
-    square.setOutlineThickness(-1);
+    square.setOutlineThickness(OUTLINE_THICKNESS);
     square.setOutlineColor(sf::Color::Black);
     for (int i = 0; i < HEIGHT; i++) {
         for (int j = 0; j < WIDTH; j++) {
@@ -84,7 +84,7 @@ void Game::drawTetromino(const Tetromino& piece) const
 {
     sf::RectangleShape square;
     square.setSize(sf::Vector2f(CELL_SIZE * RESIZE, CELL_SIZE * RESIZE)); 
-    square.setOutlineThickness(-1);
+    square.setOutlineThickness(OUTLINE_THICKNESS);
     square.setOutlineColor(sf::Color::Black);
     for (int i = 0; i < 4; i++)
         for (int j = 0; j < 4; j++)
@@ -116,7 +116,7 @@ void Game::deleteAnimation(const std::vector<int>& rows, const Playfield& playfi
 
     sf::RectangleShape square;
     square.setSize(sf::Vector2f(CELL_SIZE * RESIZE, CELL_SIZE * RESIZE));
-    square.setOutlineThickness(-1);
+    square.setOutlineThickness(OUTLINE_THICKNESS);
     square.setOutlineColor(sf::Color::Black);
     square.setFillColor(sf::Color::White);
     window->clear();
