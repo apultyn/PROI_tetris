@@ -8,10 +8,11 @@ constexpr int RESIZE = 6;
 constexpr int CELL_SIZE = 8;
 constexpr int INIT_X = 3;
 constexpr int INIT_Y = -2;
+constexpr int OUTLINE_THICKNESS = -2;
 const enum colors { GREY, SALMON, ORANGE, YELLOW, GREEN, CYAN, PURPLE, RED,
 DARK_ORANGE, SANDY_BROWN, DARK_GREEN, BLUE, DARK_PURPLE, NAVY, DARK_MEDIUM_BLUE };
 
-const sf::Color GREY_COLOR(57, 61, 71);
+const sf::Color GREY_COLOR(41, 44, 51);
 const sf::Color SALMON_COLOR(253, 63, 89);
 const sf::Color ORANGE_COLOR(255, 200, 46);
 const sf::Color YELLOW_COLOR(254, 251, 52);
