@@ -211,79 +211,83 @@ void Game::startGame()
 
         if (event.type == sf::Event::KeyPressed)
         {
-
-            switch (event.key.code)
+            if (clock.getElapsedTime().asMilliseconds() < 500)
             {
-            case sf::Keyboard::Left:
-                piece.moveLeft();
-                if (!playfield.correctPos(piece))
+                switch (event.key.code)
                 {
-                    piece.moveRight();
-                }
-                break;
-
-            case sf::Keyboard::Right:
-                piece.moveRight();
-                if (!playfield.correctPos(piece))
-                {
+                case sf::Keyboard::Left:
                     piece.moveLeft();
-                }
-                break;
-            case sf::Keyboard::Up:
-                piece.rotate_right();
-                if (!playfield.correctPos(piece))
-                {
-                    if (piece.getPosY() < 0)
-                    {
-                        piece.rotate_left();
-                    }
-                    else if (piece.getPosX() < 0)
+                    if (!playfield.correctPos(piece))
                     {
                         piece.moveRight();
-                        if (!playfield.correctPos(piece))
+                    }
+                    break;
+
+                case sf::Keyboard::Right:
+                    piece.moveRight();
+                    if (!playfield.correctPos(piece))
+                    {
+                        piece.moveLeft();
+                    }
+                    break;
+                case sf::Keyboard::Up:
+                    piece.rotate_right();
+                    if (!playfield.correctPos(piece))
+                    {
+                        if (piece.getPosY() < 0)
+                        {
+                            piece.rotate_left();
+                        }
+                        else if (piece.getPosX() < 0)
                         {
                             piece.moveRight();
                             if (!playfield.correctPos(piece))
                             {
-                                piece.moveLeft();
-                                piece.moveLeft();
-                                piece.rotate_left();
+                                piece.moveRight();
+                                if (!playfield.correctPos(piece))
+                                {
+                                    piece.moveLeft();
+                                    piece.moveLeft();
+                                    piece.rotate_left();
+                                }
                             }
                         }
-                    }
-                    else if (piece.getPosX() > 6)
-                    {
-                        piece.moveLeft();
-                        if (!playfield.correctPos(piece))
+                        else if (piece.getPosX() > 6)
                         {
                             piece.moveLeft();
                             if (!playfield.correctPos(piece))
                             {
-                                piece.moveRight();
-                                piece.moveRight();
-                                piece.rotate_left();
+                                piece.moveLeft();
+                                if (!playfield.correctPos(piece))
+                                {
+                                    piece.moveRight();
+                                    piece.moveRight();
+                                    piece.rotate_left();
+                                }
                             }
                         }
+                        else
+                        {
+                            piece.rotate_left();
+                        }
                     }
+                    std::this_thread::sleep_for(std::chrono::milliseconds(50));
+                    break;
+                case sf::Keyboard::Down:
+                    piece.moveDown();
+                    if (!playfield.correctPos(piece))
+                    {
+                        piece.moveUp();
+                    }
+                    std::this_thread::sleep_for(std::chrono::milliseconds(25));
+                    break;
+                default:
+                    break;
                 }
+                this->drawPlayfield(playfield);
+                this->drawTetromino(piece);
                 std::this_thread::sleep_for(std::chrono::milliseconds(50));
-                break;
-            case sf::Keyboard::Down:
-                piece.moveDown();
-                if (!playfield.correctPos(piece))
-                {
-                    piece.moveUp();
-                }
-                std::this_thread::sleep_for(std::chrono::milliseconds(25));
-                break;
-            default:
-                break;
-
             }
-
-            this->drawPlayfield(playfield);
-            this->drawTetromino(piece);
-            std::this_thread::sleep_for(std::chrono::milliseconds(50));
         }
 
         if (clock.getElapsedTime().asMilliseconds() >= 500)
