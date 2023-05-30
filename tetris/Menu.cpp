@@ -18,7 +18,7 @@ Menu::Menu(Window& window) : window(window)
 
 void Menu::openMenu()
 {
-    //menu_sound.play();
+    menu_sound.play();
 
     setFont(font);
     setText("EASY", font, easy);
@@ -81,7 +81,7 @@ void Menu::openMenu()
             window.getWindow().display();
             std::this_thread::sleep_for(std::chrono::milliseconds(500));
             Game game(window, EASY);
-            //menu_sound.stop();
+            menu_sound.stop();
             game.startGame();
             
 
@@ -101,7 +101,7 @@ void Menu::openMenu()
             window.getWindow().display();
             std::this_thread::sleep_for(std::chrono::milliseconds(500));
             Game game(window, MEDIUM);
-            //menu_sound.stop();
+            menu_sound.stop();
             game.startGame();
         }
         else if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && (hard_bounds.contains(localPosition.x, localPosition.y)))
@@ -120,7 +120,7 @@ void Menu::openMenu()
             window.getWindow().display();
             std::this_thread::sleep_for(std::chrono::milliseconds(500));
             Game game(window, HARD);
-            //menu_sound.stop();
+            menu_sound.stop();
             game.startGame();
         }
         window.getWindow().draw(sprite);

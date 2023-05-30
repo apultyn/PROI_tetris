@@ -176,7 +176,7 @@ void Game::setPlayfield(const Playfield& playfield)
 
 void Game::startGame()
 {
-    //theme.play();
+    theme.play();
     window.getWindow().setFramerateLimit(30);
     Tetromino piece = getNewTetromino();
     sf::Clock clock;
@@ -294,7 +294,7 @@ void Game::startGame()
                 if (playfield.checkIfDelete())
                 {
                     playfield.setRowsToDelete();
-                    //clear.play();
+                    clear.play();
                     deleteAnimation(playfield.getRowsToDelete(), playfield);
                     playfield.deleteRows();
                     text.setString("YOUR SCORE: " + std::to_string(playfield.getScore()));
@@ -307,8 +307,8 @@ void Game::startGame()
         window.getWindow().draw(text);
         if (playfield.checkGameOver())
         {
-            //theme.stop();
-            //game_over.play();
+            theme.stop();
+            game_over.play();
             std::ifstream inputFile("highscore.txt");
             int highscore_easy, highscore_medium, highscore_hard;
             if (inputFile.is_open())
