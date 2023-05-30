@@ -170,6 +170,25 @@
   <ItemGroup>
     <Text Include="highscore.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="image.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="openal32.dll" />
+    <None Include="sfml-audio-2.dll" />
+    <None Include="sfml-graphics-2.dll" />
+    <None Include="sfml-system-2.dll" />
+    <None Include="sfml-window-2.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="Quicklime-Regular.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="Sounds\clear.wav" />
+    <Media Include="Sounds\game-over.wav" />
+    <Media Include="Sounds\tetris-theme.wav" />
+    <Media Include="Sounds\title.wav" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
