@@ -365,6 +365,7 @@ void Game::startGame()
                 outputFile << highscore_hard << std::endl;
                 outputFile.close();
             }
+            window.getWindow().display();
             std::this_thread::sleep_for(std::chrono::seconds(5));
             window.getWindow().close();
         }
