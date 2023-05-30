@@ -7,10 +7,18 @@ void setText(const std::string& string, sf::Font& font, sf::Text& text);
 void decreaseBounds(sf::FloatRect& bounds);
 void setRectangle(const sf::FloatRect& bounds, sf::RectangleShape& shape);
 void transformText(sf::Text& text, sf::RectangleShape& shape);
-Menu::Menu(Window& window) : window(window) {};
+
+Menu::Menu(Window& window) : window(window) 
+{
+    menu_sound_buf.loadFromFile("Sounds/title.wav");
+    menu_sound.setBuffer(menu_sound_buf);
+    menu_sound.setLoop(true);
+    menu_sound.setVolume(50);
+};
 
 void Menu::openMenu()
 {
+    menu_sound.play();
 
     setFont(font);
     setText("EASY", font, easy);
@@ -30,10 +38,8 @@ void Menu::openMenu()
     setRectangle(medium_bounds, medium_rect);
     setRectangle(hard_bounds, hard_rect);
 
-
     while (window.getWindow().isOpen())
     {
-
         while (window.getWindow().pollEvent(event))
         {
             if (event.type == sf::Event::Closed)
@@ -56,7 +62,9 @@ void Menu::openMenu()
             window.getWindow().display();
             std::this_thread::sleep_for(std::chrono::milliseconds(500));
             Game game(window, EASY);
+            menu_sound.stop();
             game.startGame();
+            
 
         }
         else if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && (medium_bounds.contains(localPosition.x, localPosition.y)))
@@ -72,6 +80,7 @@ void Menu::openMenu()
             window.getWindow().display();
             std::this_thread::sleep_for(std::chrono::milliseconds(500));
             Game game(window, MEDIUM);
+            menu_sound.stop();
             game.startGame();
         }
         else if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && (hard_bounds.contains(localPosition.x, localPosition.y)))
@@ -87,6 +96,7 @@ void Menu::openMenu()
             window.getWindow().display();
             std::this_thread::sleep_for(std::chrono::milliseconds(500));
             Game game(window, HARD);
+            menu_sound.stop();
             game.startGame();
         }
 

@@ -1,12 +1,14 @@
 #pragma once
 #include "Window.h"
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include "Game.h"
 
 class Menu
 {
 private:
 	Window& window;
+	sf::SoundBuffer menu_sound_buf;
 	sf::Event event;
 	sf::Font font;
 	sf::Text easy;
@@ -21,6 +23,7 @@ private:
 	sf::FloatRect hard_bounds = hard.getGlobalBounds();
 public:
 	Menu(Window& window);
+	sf::Sound menu_sound;
 	void openMenu();
 	void drawAll();
 };
