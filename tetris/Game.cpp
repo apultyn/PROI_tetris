@@ -320,21 +320,44 @@ void Game::startGame()
             theme.stop();
             game_over.play();
             std::ifstream inputFile("highscore.txt");
+            int highscore_easy, highscore_medium, highscore_hard;
             if (inputFile.is_open())
             {
-                int highscore;
-                inputFile >> highscore;
+                inputFile >> highscore_easy;
+                inputFile >> highscore_medium;
+                inputFile >> highscore_hard;
                 inputFile.close();
-
-                if (playfield.getScore() > highscore)
+            }
+            if (wait_time == EASY)
+            {
+                if (playfield.getScore() > highscore_easy)
                 {
-                    highscore = playfield.getScore();
-
-                    std::ofstream outputFile("highscore.txt");
-                    outputFile << highscore;
-                    outputFile.close();
+                    highscore_easy = playfield.getScore();
                 }
             }
+            else if (wait_time == MEDIUM)
+            {
+                if (playfield.getScore() > highscore_medium)
+                {
+                    highscore_medium = playfield.getScore();
+                }
+            }
+            else if (wait_time == HARD)
+            {
+                if (playfield.getScore() > highscore_hard)
+                {
+                    highscore_hard = playfield.getScore();
+                }
+            }
+            std::ofstream outputFile("highscore.txt");
+            if (outputFile.is_open())
+            {
+                outputFile << highscore_easy << std::endl;
+                outputFile << highscore_medium << std::endl;
+                outputFile << highscore_hard << std::endl;
+                outputFile.close();
+            }
+
             std::this_thread::sleep_for(std::chrono::seconds(5));
             window.getWindow().close();
         }
