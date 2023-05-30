@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <fstream>
+#include <iostream>
 
 sf::Color getColor(const int& color);
 
@@ -196,6 +197,8 @@ void Game::startGame()
     text.setString("YOUR SCORE: " + std::to_string(playfield.getScore()));
     text.setPosition({ 576, 480 });
 
+    int time = 500;
+
     while (window->isOpen())
     {
 
@@ -211,7 +214,7 @@ void Game::startGame()
 
         if (event.type == sf::Event::KeyPressed)
         {
-            if (clock.getElapsedTime().asMilliseconds() < 500)
+            if (clock.getElapsedTime().asMilliseconds() < time)
             {
                 switch (event.key.code)
                 {
@@ -290,7 +293,7 @@ void Game::startGame()
             }
         }
 
-        if (clock.getElapsedTime().asMilliseconds() >= 500)
+        if (clock.getElapsedTime().asMilliseconds() >= time)
         {
             piece.moveDown();
 
@@ -298,6 +301,8 @@ void Game::startGame()
             {
                 piece.moveUp();
                 playfield.updateMatrix(piece);
+                time = time * 0.995;
+                std::cout << time << std::endl;
 
                 if (playfield.checkIfDelete())
                 {
@@ -305,7 +310,6 @@ void Game::startGame()
                     this->deleteAnimation(playfield.getRowsToDelete(), playfield);
                     playfield.deleteRows();
                     text.setString("YOUR SCORE: " + std::to_string(playfield.getScore()));
-
                 }
                 piece = this->getNewTetromino();
             }
