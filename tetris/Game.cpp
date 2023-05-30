@@ -176,7 +176,7 @@ void Game::setPlayfield(const Playfield& playfield)
 
 void Game::startGame()
 {
-    theme.play();
+    //theme.play();
     window.getWindow().setFramerateLimit(30);
     Tetromino piece = getNewTetromino();
     sf::Clock clock;
@@ -294,7 +294,7 @@ void Game::startGame()
                 if (playfield.checkIfDelete())
                 {
                     playfield.setRowsToDelete();
-                    clear.play();
+                    //clear.play();
                     deleteAnimation(playfield.getRowsToDelete(), playfield);
                     playfield.deleteRows();
                     text.setString("YOUR SCORE: " + std::to_string(playfield.getScore()));
@@ -307,8 +307,8 @@ void Game::startGame()
         window.getWindow().draw(text);
         if (playfield.checkGameOver())
         {
-            theme.stop();
-            game_over.play();
+            //theme.stop();
+            //game_over.play();
             std::ifstream inputFile("highscore.txt");
             int highscore_easy, highscore_medium, highscore_hard;
             if (inputFile.is_open())
@@ -347,7 +347,6 @@ void Game::startGame()
                 outputFile << highscore_hard << std::endl;
                 outputFile.close();
             }
-
             std::this_thread::sleep_for(std::chrono::seconds(5));
             window.getWindow().close();
         }
@@ -359,7 +358,7 @@ void Game::startGame()
 Game::Game(Window& windowRef, int wait_time) : window(windowRef), wait_time(wait_time) 
 {
     clear_buf.loadFromFile("Sounds/clear.wav");
-    game_over_buf.loadFromFile("Sounds/title.wav");
+    game_over_buf.loadFromFile("Sounds/game-over.wav");
     theme_buf.loadFromFile("Sounds/tetris-theme.wav");
     clear.setBuffer(clear_buf);
     game_over.setBuffer(game_over_buf);
