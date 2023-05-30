@@ -38,6 +38,22 @@ void Menu::openMenu()
     setRectangle(medium_bounds, medium_rect);
     setRectangle(hard_bounds, hard_rect);
 
+    sf::Texture texture;
+    texture.loadFromFile("image.png");
+    sf::Sprite sprite;
+    sf::Sprite sprite_1;
+
+
+    sprite.setTexture(texture);
+    sprite.setScale(0.4, 0.4);
+    sprite_1.setTexture(texture);
+    sprite_1.setScale(0.4, 0.4);
+    sprite.setPosition(550, 550);
+    sprite_1.setRotation(180);
+    sprite_1.setPosition(420, 420);
+
+    setText("TETRIS", font, tetris);
+
 
     while (window.getWindow().isOpen())
     {
@@ -48,7 +64,7 @@ void Menu::openMenu()
         }
         window.getWindow().clear();
         sf::Vector2i localPosition = sf::Mouse::getPosition(window.getWindow());
-       
+        setText("TETRIS", font, tetris);
         if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && (easy_bounds.contains(localPosition.x, localPosition.y)))
         {
             transformText(easy, easy_rect);
