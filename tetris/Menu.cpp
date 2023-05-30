@@ -38,6 +38,7 @@ void Menu::openMenu()
     setRectangle(medium_bounds, medium_rect);
     setRectangle(hard_bounds, hard_rect);
 
+
     while (window.getWindow().isOpen())
     {
         while (window.getWindow().pollEvent(event))
@@ -47,10 +48,12 @@ void Menu::openMenu()
         }
         window.getWindow().clear();
         sf::Vector2i localPosition = sf::Mouse::getPosition(window.getWindow());
-        setText("TETRIS", font, tetris);
+       
         if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && (easy_bounds.contains(localPosition.x, localPosition.y)))
         {
             transformText(easy, easy_rect);
+            window.getWindow().draw(sprite);
+            window.getWindow().draw(sprite_1);
             drawAll();
             window.getWindow().display();
             std::this_thread::sleep_for(std::chrono::milliseconds(200));
@@ -70,6 +73,8 @@ void Menu::openMenu()
         else if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && (medium_bounds.contains(localPosition.x, localPosition.y)))
         {
             transformText(medium, medium_rect);
+            window.getWindow().draw(sprite);
+            window.getWindow().draw(sprite_1);  
             drawAll();
             window.getWindow().display();
             std::this_thread::sleep_for(std::chrono::milliseconds(200));
@@ -86,7 +91,10 @@ void Menu::openMenu()
         else if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && (hard_bounds.contains(localPosition.x, localPosition.y)))
         {
             transformText(hard, hard_rect);
+            window.getWindow().draw(sprite);
+            window.getWindow().draw(sprite_1);
             drawAll();
+            
             window.getWindow().display();
             std::this_thread::sleep_for(std::chrono::milliseconds(200));
             setText("HARD", font, medium);
@@ -99,8 +107,10 @@ void Menu::openMenu()
             menu_sound.stop();
             game.startGame();
         }
-
+        window.getWindow().draw(sprite);
+        window.getWindow().draw(sprite_1);
         drawAll();
+      
         window.getWindow().display();
     }
 }
@@ -132,7 +142,7 @@ void setText(const std::string& string, sf::Font& font, sf::Text& text)
     else if (string == "HARD")
         text.setPosition(275, 700);
     else
-        text.setPosition(225, 50);
+        text.setPosition(225, 150);
 }
 
 void decreaseBounds(sf::FloatRect& bounds)
