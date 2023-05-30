@@ -176,17 +176,43 @@ void Game::setPlayfield(const Playfield& playfield)
 
 void Game::startGame()
 {
+    std::ifstream inputFile("highscore.txt");
+    int highscore_easy, highscore_medium, highscore_hard;
+    if (inputFile.is_open())
+    {
+        inputFile >> highscore_easy;
+        inputFile >> highscore_medium;
+        inputFile >> highscore_hard;
+        inputFile.close();
+    }
+
     theme.play();
     window.getWindow().setFramerateLimit(30);
     Tetromino piece = getNewTetromino();
     sf::Clock clock;
     sf::Text text;
+    sf::Text highscore;
     sf::Font font;
     font.loadFromFile("Quicklime-Regular.ttf");
     text.setFillColor(sf::Color::White);
     text.setFont(font);
     text.setString("YOUR SCORE: " + std::to_string(playfield.getScore()));
     text.setPosition({ 576, 480 });
+    highscore.setFillColor(sf::Color::White);
+    highscore.setFont(font);
+    if (wait_time == EASY)
+    {
+        highscore.setString("HIGHSCORE: " + std::to_string(highscore_easy));
+    }
+    else if (wait_time == MEDIUM)
+    {
+        highscore.setString("HIGHSCORE: " + std::to_string(highscore_medium));
+    }
+    else if (wait_time == HARD)
+    {
+        highscore.setString("HIGHSCORE: " + std::to_string(highscore_hard));
+    }
+    highscore.setPosition({ 576, 520 });
 
     while (window.getWindow().isOpen())
     {
@@ -305,19 +331,11 @@ void Game::startGame()
             clock.restart();
         }
         window.getWindow().draw(text);
+        window.getWindow().draw(highscore);
         if (playfield.checkGameOver())
         {
             theme.stop();
             game_over.play();
-            std::ifstream inputFile("highscore.txt");
-            int highscore_easy, highscore_medium, highscore_hard;
-            if (inputFile.is_open())
-            {
-                inputFile >> highscore_easy;
-                inputFile >> highscore_medium;
-                inputFile >> highscore_hard;
-                inputFile.close();
-            }
             if (wait_time == EASY)
             {
                 if (playfield.getScore() > highscore_easy)
