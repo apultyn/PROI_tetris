@@ -20,7 +20,8 @@ void Game::drawPlayfield(const Playfield& playfield) const
             int color = playfield.playfield_matrix[i][j];
             sf::Color square_color = getColor(color);
             square.setFillColor(square_color);
-            window->draw(square);
+            window.getWindow().draw(square);
+           
         } 
     }
 }
@@ -95,7 +96,7 @@ void Game::drawTetromino(const Tetromino& piece) const
             sf::Color square_color = getColor(color);
             square.setFillColor(square_color);
             if(color != GREY)
-                window->draw(square);
+                window.getWindow().draw(square);
      
         }
    
@@ -119,7 +120,7 @@ void Game::deleteAnimation(const std::vector<int>& rows, const Playfield& playfi
     square.setOutlineThickness(OUTLINE_THICKNESS);
     square.setOutlineColor(sf::Color::Black);
     square.setFillColor(sf::Color::White);
-    window->clear();
+    window.getWindow().clear();
     drawPlayfield(playfield);
          for (int row : rows)
         {
@@ -127,15 +128,15 @@ void Game::deleteAnimation(const std::vector<int>& rows, const Playfield& playfi
             for (int j = 0; j < WIDTH; j++)
             {
                 square.setPosition(j * CELL_SIZE * RESIZE, row  * CELL_SIZE * RESIZE);
-                window->draw(square);
+                window.getWindow().draw(square);
                 
             }
             
 
         }
-    window->display();
+    window.getWindow().display();
     std::this_thread::sleep_for(std::chrono::milliseconds(300));
-    window->clear();
+    window.getWindow().clear();
     drawPlayfield(playfield);
     square.setFillColor(GREY_COLOR);
     for (int row : rows)
@@ -144,13 +145,13 @@ void Game::deleteAnimation(const std::vector<int>& rows, const Playfield& playfi
             for (int j = 0; j < WIDTH; j++)
             {
                 square.setPosition(j * CELL_SIZE * RESIZE, row * CELL_SIZE * RESIZE);
-                window->draw(square);
+                window.getWindow().draw(square);
             }
 
         }
-    window->display();
+    window.getWindow().display();
     std::this_thread::sleep_for(std::chrono::milliseconds(300));
-    window->clear();
+    window.getWindow().clear();
     drawPlayfield(playfield); 
     square.setFillColor(sf::Color::White);
     for (int row : rows)
@@ -159,11 +160,11 @@ void Game::deleteAnimation(const std::vector<int>& rows, const Playfield& playfi
             for (int j = 0; j < WIDTH; j++)
             {
                 square.setPosition(j * CELL_SIZE * RESIZE, row * CELL_SIZE * RESIZE);
-                window->draw(square);
+                window.getWindow().draw(square);
             }
 
         }
-    window->display();
+   window.getWindow().display();
     std::this_thread::sleep_for(std::chrono::milliseconds(300));
     
 }
@@ -173,20 +174,20 @@ void Game::setPlayfield(const Playfield& playfield)
     this->playfield = playfield;
 }
 
-void Game::initWindow()
-{
-    this->window = std::make_unique<sf::RenderWindow>(sf::VideoMode(WIDTH * RESIZE * CELL_SIZE * 2, VISIBLE_HEIGHT * RESIZE * CELL_SIZE), "Tetris");
-}
-
-sf::RenderWindow* Game::getWindow() const
-{
-    return this->window.get();
-}
+//void Game::initthis->getWindow()()
+//{
+//    this->this->getWindow() = std::make_unique<sf::Renderthis->getWindow()>(sf::VideoMode(WIDTH * RESIZE * CELL_SIZE * 2, VISIBLE_HEIGHT * RESIZE * CELL_SIZE), "Tetris");
+//}
+//
+//sf::Renderthis->getWindow()* Game::getthis->getWindow()() const
+//{
+//    return this->this->getWindow().get();
+//}
 
 void Game::startGame()
 {
-    window->setFramerateLimit(30);
-    Tetromino piece = this->getNewTetromino();
+    window.getWindow().setFramerateLimit(30);
+    Tetromino piece = getNewTetromino();
     sf::Clock clock;
     sf::Text text;
     sf::Font font;
@@ -196,22 +197,22 @@ void Game::startGame()
     text.setString("YOUR SCORE: " + std::to_string(playfield.getScore()));
     text.setPosition({ 576, 480 });
 
-    while (window->isOpen())
+    while (window.getWindow().isOpen())
     {
 
         sf::Event event;
-        while (window->pollEvent(event))
+        while (window.getWindow().pollEvent(event))
         {
             if (event.type == sf::Event::Closed)
-                window->close();
+                window.getWindow().close();
         }
-        window->clear();
-        this->drawPlayfield(playfield);
-        this->drawTetromino(piece);
+        window.getWindow().clear();
+        drawPlayfield(playfield);
+        drawTetromino(piece);
 
         if (event.type == sf::Event::KeyPressed)
         {
-            if (clock.getElapsedTime().asMilliseconds() < 500)
+            if (clock.getElapsedTime().asMilliseconds() < wait_time)
             {
                 switch (event.key.code)
                 {
@@ -284,13 +285,13 @@ void Game::startGame()
                 default:
                     break;
                 }
-                this->drawPlayfield(playfield);
-                this->drawTetromino(piece);
+                drawPlayfield(playfield);
+                drawTetromino(piece);
                 std::this_thread::sleep_for(std::chrono::milliseconds(50));
             }
         }
 
-        if (clock.getElapsedTime().asMilliseconds() >= 500)
+        if (clock.getElapsedTime().asMilliseconds() >= wait_time)
         {
             piece.moveDown();
 
@@ -302,16 +303,16 @@ void Game::startGame()
                 if (playfield.checkIfDelete())
                 {
                     playfield.setRowsToDelete();
-                    this->deleteAnimation(playfield.getRowsToDelete(), playfield);
+                    deleteAnimation(playfield.getRowsToDelete(), playfield);
                     playfield.deleteRows();
                     text.setString("YOUR SCORE: " + std::to_string(playfield.getScore()));
 
                 }
-                piece = this->getNewTetromino();
+                piece = getNewTetromino();
             }
             clock.restart();
         }
-        window->draw(text);
+        window.getWindow().draw(text);
         if (playfield.checkGameOver())
         {
             std::ifstream inputFile("highscore.txt");
@@ -331,9 +332,16 @@ void Game::startGame()
                 }
             }
             std::this_thread::sleep_for(std::chrono::seconds(5));
-            window->close();
+            window.getWindow().close();
         }
-        window->display();
+        window.getWindow().display();
 
     }
+}
+
+Game::Game(Window& windowRef, int wait_time) : window(windowRef), wait_time(wait_time) {};
+
+int Game::getWaitTime()
+{
+    return this->wait_time;
 }
