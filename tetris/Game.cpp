@@ -174,16 +174,6 @@ void Game::setPlayfield(const Playfield& playfield)
     this->playfield = playfield;
 }
 
-//void Game::initthis->getWindow()()
-//{
-//    this->this->getWindow() = std::make_unique<sf::Renderthis->getWindow()>(sf::VideoMode(WIDTH * RESIZE * CELL_SIZE * 2, VISIBLE_HEIGHT * RESIZE * CELL_SIZE), "Tetris");
-//}
-//
-//sf::Renderthis->getWindow()* Game::getthis->getWindow()() const
-//{
-//    return this->this->getWindow().get();
-//}
-
 void Game::startGame()
 {
     window.getWindow().setFramerateLimit(30);
