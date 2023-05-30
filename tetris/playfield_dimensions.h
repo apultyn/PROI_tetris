@@ -9,6 +9,9 @@ constexpr int CELL_SIZE = 8;
 constexpr int INIT_X = 3;
 constexpr int INIT_Y = -2;
 constexpr int OUTLINE_THICKNESS = -2;
+constexpr int EASY = 500;
+constexpr int MEDIUM = 150;
+constexpr int HARD = 50;
 const enum colors { GREY, SALMON, ORANGE, YELLOW, GREEN, CYAN, PURPLE, RED,
 DARK_ORANGE, SANDY_BROWN, DARK_GREEN, BLUE, DARK_PURPLE, NAVY, DARK_MEDIUM_BLUE };
 
