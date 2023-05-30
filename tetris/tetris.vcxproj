@@ -186,8 +186,8 @@
   <ItemGroup>
     <Media Include="Sounds\clear.wav" />
     <Media Include="Sounds\game-over.wav" />
-    <Media Include="Sounds\tetris-theme.wav" />
-    <Media Include="Sounds\title.wav" />
+    <Media Include="Sounds\main-theme.wav" />
+    <Media Include="Sounds\menu-theme.wav" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

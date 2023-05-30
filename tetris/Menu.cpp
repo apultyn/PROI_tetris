@@ -10,8 +10,7 @@ void transformText(sf::Text& text, sf::RectangleShape& shape);
 
 Menu::Menu(Window& window) : window(window) 
 {
-    menu_sound_buf.loadFromFile("Sounds/title.wav");
-    menu_sound.setBuffer(menu_sound_buf);
+    menu_sound.openFromFile("Sounds/menu-theme.wav");
     menu_sound.setLoop(true);
     menu_sound.setVolume(50);
 };

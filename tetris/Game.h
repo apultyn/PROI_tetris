@@ -10,9 +10,6 @@
 class Game
 {
 public:
-	sf::Sound clear;
-	sf::Sound game_over;
-	sf::Sound theme;
 	void drawTetromino(const Tetromino&) const;
 	void drawPlayfield(const Playfield&) const;
 	Tetromino getNewTetromino() const;
@@ -28,8 +25,8 @@ private:
 	//std::unique_ptr<sf::RenderWindow> window;
 	Window& window;
 	int wait_time;
-	sf::SoundBuffer clear_buf;
-	sf::SoundBuffer game_over_buf;
-	sf::SoundBuffer theme_buf;
+	sf::Music theme;
+	sf::Music clear;
+	sf::Music game_over;
 };
 

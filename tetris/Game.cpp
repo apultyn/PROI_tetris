@@ -375,12 +375,9 @@ void Game::startGame()
 
 Game::Game(Window& windowRef, int wait_time) : window(windowRef), wait_time(wait_time) 
 {
-    clear_buf.loadFromFile("Sounds/clear.wav");
-    game_over_buf.loadFromFile("Sounds/game-over.wav");
-    theme_buf.loadFromFile("Sounds/tetris-theme.wav");
-    clear.setBuffer(clear_buf);
-    game_over.setBuffer(game_over_buf);
-    theme.setBuffer(theme_buf);
+    clear.openFromFile("Sounds/clear.wav");
+    theme.openFromFile("Sounds/main-theme.wav");
+    game_over.openFromFile("Sounds/game-over.wav");
     theme.setLoop(true);
     theme.setVolume(50);
 };
