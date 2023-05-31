@@ -22,7 +22,6 @@ public:
 	Tetromino(const char type, int posx, int posy);
 	void rotate_left();
 	void rotate_right();
-	//void updateMatrix(std::vector<std::vector<int>>&);
 	void transpose_matrix();
 	std::string toString();
 	//int getInitX();

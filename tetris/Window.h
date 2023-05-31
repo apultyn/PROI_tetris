@@ -9,5 +9,5 @@ private:
 public:
     Window();
 
-    sf::RenderWindow& getWindow();  // Getter for the window object
+    sf::RenderWindow& getWindow();
 };

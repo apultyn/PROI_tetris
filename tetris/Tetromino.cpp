@@ -116,15 +116,6 @@ std::string Tetromino::toString() {
 	return tostring.str();
 }
 
-//int Tetromino::getInitX()
-//{
-//	return this->initX;
-//}
-//
-//int Tetromino::getInitY()
-//{
-//	return this->initY;
-//}
 
 void Tetromino::moveDown()
 {
