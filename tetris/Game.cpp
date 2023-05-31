@@ -321,6 +321,8 @@ void Game::startGame()
                 {
                     playfield.setRowsToDelete();
                     clear.play();
+                   
+      
                     deleteAnimation(playfield.getRowsToDelete(), playfield);
                     playfield.deleteRows();
                     text.setString("YOUR SCORE: " + std::to_string(playfield.getScore()));
@@ -337,25 +339,32 @@ void Game::startGame()
             theme.stop();
             game_over.play();
             if (wait_time == EASY)
-            {
+            { 
+                printEnd(highscore_easy);
                 if (playfield.getScore() > highscore_easy)
                 {
                     highscore_easy = playfield.getScore();
                 }
+               ;
             }
             else if (wait_time == MEDIUM)
-            {
+            { 
+                printEnd(highscore_medium);
                 if (playfield.getScore() > highscore_medium)
                 {
                     highscore_medium = playfield.getScore();
                 }
+               
             }
             else if (wait_time == HARD)
-            {
+            {     
+                
+                printEnd(highscore_hard);
                 if (playfield.getScore() > highscore_hard)
                 {
                     highscore_hard = playfield.getScore();
                 }
+           
             }
             std::ofstream outputFile("highscore.txt");
             if (outputFile.is_open())
@@ -386,4 +395,28 @@ Game::Game(Window& windowRef, int wait_time) : window(windowRef), wait_time(wait
 int Game::getWaitTime()
 {
     return this->wait_time;
+}
+
+void Game::printEnd(int& h_score)
+{       
+    sf::Text text;
+    sf::Font font;
+    font.loadFromFile("Quicklime-Regular.ttf");
+    text.setFillColor(sf::Color::White);
+    text.setFont(font);
+    text.setPosition({ 550, 600 });
+    if (playfield.getScore() > h_score)
+    {
+      
+        text.setString("YOU SET A NEW RECORD!");
+    }
+    else if (h_score - playfield.getScore() <= 200)
+    {
+        text.setString("YOU WERE SO CLOSE!\n      KEEP TRYING!");
+    }
+    else
+    {
+        text.setString("    DON'T GIVE UP!\n    KEEP TRYING!");
+    }
+    window.getWindow().draw(text);
 }
