@@ -326,6 +326,7 @@ void Game::startGame()
                     deleteAnimation(playfield.getRowsToDelete(), playfield);
                     playfield.deleteRows();
                     text.setString("YOUR SCORE: " + std::to_string(playfield.getScore()));
+                    clear.stop();
 
                 }
                 piece = getNewTetromino();
