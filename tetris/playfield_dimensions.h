@@ -18,6 +18,8 @@ constexpr int WINDOW_HEIGHT = DRAW_SIZE * HEIGHT;
 constexpr int RESTART = 1;
 constexpr int CLOSE = 2;
 constexpr int CHANGE_LVL = 3;
+constexpr int TETROMINO_SIZE = 4;
+constexpr int POINTS = 100;
 const enum colors { GREY, SALMON, ORANGE, YELLOW, GREEN, CYAN, PURPLE, RED,
 DARK_ORANGE, SANDY_BROWN, DARK_GREEN, BLUEBONNET_BLUE, DARK_PURPLE, STEEL_BLUE, ULTRAMARINE_BLUE };
 
