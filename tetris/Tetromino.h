@@ -24,8 +24,6 @@ public:
 	void rotate_right();
 	void transpose_matrix();
 	std::string toString();
-	//int getInitX();
-	//int getInitY();
 	int getPosX() const;
 	int getPosY() const;
 	void moveDown();
