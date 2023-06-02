@@ -8,6 +8,5 @@ private:
 
 public:
     Window();
-
     sf::RenderWindow& getWindow();
 };
