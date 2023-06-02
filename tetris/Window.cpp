@@ -2,7 +2,7 @@
 #include "playfield_dimensions.h"
 
 Window::Window() {
-    window.create(sf::VideoMode(WIDTH * RESIZE * CELL_SIZE * 2, VISIBLE_HEIGHT * RESIZE * CELL_SIZE), "Tetris");
+    window.create(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Tetris");
 }
 
 sf::RenderWindow& Window::getWindow() {
