@@ -12,7 +12,7 @@ private:
 	int posX = INIT_X;
 	int posY = INIT_Y;
 public:
-	int matrix[4][4] = {
+	int matrix[TETROMINO_SIZE][TETROMINO_SIZE] = {
 		{0, 0, 0, 0},
 		{0, 0, 0, 0},
 		{0, 0, 0, 0},
@@ -23,7 +23,6 @@ public:
 	void rotate_left();
 	void rotate_right();
 	void transpose_matrix();
-	std::string toString();
 	int getPosX() const;
 	int getPosY() const;
 	void moveDown();

@@ -3,9 +3,9 @@
 
 bool Playfield::correctPos(const Tetromino& tetromino) const
 {
-	for (int row = 0; row < 4; row++) 
+	for (int row = 0; row < TETROMINO_SIZE; row++) 
 	{
-		for (int column = 0; column < 4; column++) 
+		for (int column = 0; column < TETROMINO_SIZE; column++) 
 		{
 			if (tetromino.matrix[row][column] != 0)
 			{
@@ -25,9 +25,9 @@ bool Playfield::correctPos(const Tetromino& tetromino) const
 
 void Playfield::updateMatrix(const Tetromino& tetromino)
 {
-	for (int row = 0; row < 4; row++)
+	for (int row = 0; row < TETROMINO_SIZE; row++)
 	{
-		for (int column = 0; column < 4; column++)
+		for (int column = 0; column < TETROMINO_SIZE; column++)
 		{
 			if (tetromino.matrix[row][column] != 0)
 			{
@@ -95,7 +95,7 @@ void Playfield::deleteRows()
 			this->playfield_matrix[i][j] = 0;
 		}
 	}
-	this->score += this->del_rows.size() * 100;
+	this->score += this->del_rows.size() * POINTS;
 	this->del_rows.clear();
 	
 
