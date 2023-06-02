@@ -4,19 +4,20 @@
 #include <stdlib.h>
 #include <time.h>
 #include <fstream>
+#include "Menu.h"
 
 sf::Color getColor(const int& color);
 
-void Game::drawPlayfield(const Playfield& playfield) const
+void Game::drawPlayfield() const
 {
     sf::RectangleShape square;
-    square.setSize(sf::Vector2f(CELL_SIZE * RESIZE, CELL_SIZE * RESIZE));
+    square.setSize(sf::Vector2f(DRAW_SIZE, DRAW_SIZE));
     square.setOutlineThickness(OUTLINE_THICKNESS);
     square.setOutlineColor(sf::Color::Black);
     for (int i = 0; i < HEIGHT; i++) {
         for (int j = 0; j < WIDTH; j++) {
 
-            square.setPosition(j * CELL_SIZE * RESIZE, i * CELL_SIZE * RESIZE);
+            square.setPosition(j * DRAW_SIZE, i * DRAW_SIZE);
             int color = playfield.playfield_matrix[i][j];
             sf::Color square_color = getColor(color);
             square.setFillColor(square_color);
@@ -64,17 +65,17 @@ sf::Color getColor(const int& color)
     case DARK_GREEN:
         return DARK_GREEN_COLOR;
         
-    case BLUE:
-        return BLUE_COLOR;
+    case BLUEBONNET_BLUE:
+        return BLUEBONNET_BLUE_COLOR;
       
     case DARK_PURPLE:
         return DARK_PURPLE_COLOR;
        
-    case NAVY:
-        return NAVY_COLOR;
+    case STEEL_BLUE:
+        return STEEL_BLUE_COLOR;
         
-    case DARK_MEDIUM_BLUE:
-        return DARK_MEDIUM_BLUE_COLOR;
+    case ULTRAMARINE_BLUE:
+        return ULTRAMARINE_BLUE_COLOR;
      
     }
     
@@ -84,7 +85,7 @@ sf::Color getColor(const int& color)
 void Game::drawTetromino(const Tetromino& piece) const
 {
     sf::RectangleShape square;
-    square.setSize(sf::Vector2f(CELL_SIZE * RESIZE, CELL_SIZE * RESIZE)); 
+    square.setSize(sf::Vector2f(DRAW_SIZE, DRAW_SIZE)); 
     square.setOutlineThickness(OUTLINE_THICKNESS);
     square.setOutlineColor(sf::Color::Black);
     for (int i = 0; i < 4; i++)
@@ -92,7 +93,7 @@ void Game::drawTetromino(const Tetromino& piece) const
         {
             int color = piece.matrix[i][j];
 
-            square.setPosition((j + piece.getPosX()) * CELL_SIZE * RESIZE , (i + piece.getPosY()) * CELL_SIZE * RESIZE);
+            square.setPosition((j + piece.getPosX()) * DRAW_SIZE , (i + piece.getPosY()) * DRAW_SIZE);
             sf::Color square_color = getColor(color);
             square.setFillColor(square_color);
             if(color != GREY)
@@ -112,22 +113,22 @@ Tetromino Game::getNewTetromino() const
     return tetromino;
 }
 
-void Game::deleteAnimation(const std::vector<int>& rows, const Playfield& playfield) const
+void Game::deleteAnimation(const std::vector<int>& rows) const
 {
 
     sf::RectangleShape square;
-    square.setSize(sf::Vector2f(CELL_SIZE * RESIZE, CELL_SIZE * RESIZE));
+    square.setSize(sf::Vector2f(DRAW_SIZE, DRAW_SIZE));
     square.setOutlineThickness(OUTLINE_THICKNESS);
     square.setOutlineColor(sf::Color::Black);
     square.setFillColor(sf::Color::White);
     window.getWindow().clear();
-    drawPlayfield(playfield);
+    drawPlayfield();
          for (int row : rows)
         {
 
             for (int j = 0; j < WIDTH; j++)
             {
-                square.setPosition(j * CELL_SIZE * RESIZE, row  * CELL_SIZE * RESIZE);
+                square.setPosition(j * DRAW_SIZE, row  * DRAW_SIZE);
                 window.getWindow().draw(square);
                 
             }
@@ -137,14 +138,14 @@ void Game::deleteAnimation(const std::vector<int>& rows, const Playfield& playfi
     window.getWindow().display();
     std::this_thread::sleep_for(std::chrono::milliseconds(300));
     window.getWindow().clear();
-    drawPlayfield(playfield);
+    drawPlayfield();
     square.setFillColor(GREY_COLOR);
     for (int row : rows)
         {
 
             for (int j = 0; j < WIDTH; j++)
             {
-                square.setPosition(j * CELL_SIZE * RESIZE, row * CELL_SIZE * RESIZE);
+                square.setPosition(j * DRAW_SIZE, row * DRAW_SIZE);
                 window.getWindow().draw(square);
             }
 
@@ -152,14 +153,14 @@ void Game::deleteAnimation(const std::vector<int>& rows, const Playfield& playfi
     window.getWindow().display();
     std::this_thread::sleep_for(std::chrono::milliseconds(300));
     window.getWindow().clear();
-    drawPlayfield(playfield); 
+    drawPlayfield(); 
     square.setFillColor(sf::Color::White);
     for (int row : rows)
         {
 
             for (int j = 0; j < WIDTH; j++)
             {
-                square.setPosition(j * CELL_SIZE * RESIZE, row * CELL_SIZE * RESIZE);
+                square.setPosition(j * DRAW_SIZE, row * DRAW_SIZE);
                 window.getWindow().draw(square);
             }
 
@@ -169,12 +170,12 @@ void Game::deleteAnimation(const std::vector<int>& rows, const Playfield& playfi
     
 }
 
-void Game::setPlayfield(const Playfield& playfield)
-{
-    this->playfield = playfield;
-}
+//void Game::setPlayfield(const Playfield& playfield)
+//{
+//    this->playfield = playfield;
+//}
 
-void Game::startGame()
+int Game::startGame()
 {
     std::ifstream inputFile("highscore.txt");
     int highscore_easy, highscore_medium, highscore_hard;
@@ -224,7 +225,7 @@ void Game::startGame()
                 window.getWindow().close();
         }
         window.getWindow().clear();
-        drawPlayfield(playfield);
+        drawPlayfield();
         drawTetromino(piece);
 
         if (event.type == sf::Event::KeyPressed)
@@ -302,7 +303,7 @@ void Game::startGame()
                 default:
                     break;
                 }
-                drawPlayfield(playfield);
+                drawPlayfield();
                 drawTetromino(piece);
                 std::this_thread::sleep_for(std::chrono::milliseconds(50));
             }
@@ -323,7 +324,7 @@ void Game::startGame()
                     clear.play();
                    
       
-                    deleteAnimation(playfield.getRowsToDelete(), playfield);
+                    deleteAnimation(playfield.getRowsToDelete());
                     playfield.deleteRows();
                     text.setString("YOUR SCORE: " + std::to_string(playfield.getScore()));
                     clear.stop();
@@ -376,21 +377,25 @@ void Game::startGame()
                 outputFile.close();
             }
             window.getWindow().display();
-            std::this_thread::sleep_for(std::chrono::seconds(5));
-            window.getWindow().close();
+            std::this_thread::sleep_for(std::chrono::seconds(3));
+            game_over.stop();
+            return restartGame();
+           // this->startGame();
+            //window.getWindow().close();
         }
         window.getWindow().display();
 
     }
 }
 
-Game::Game(Window& windowRef, int wait_time) : window(windowRef), wait_time(wait_time) 
+Game::Game(Window& windowRef, int wait_time) : window(windowRef), wait_time(wait_time)
 {
     clear.openFromFile("Sounds/clear.wav");
     theme.openFromFile("Sounds/main-theme.wav");
     game_over.openFromFile("Sounds/game-over.wav");
     theme.setLoop(true);
     theme.setVolume(50);
+    
 };
 
 int Game::getWaitTime()
@@ -419,5 +424,28 @@ void Game::printEnd(int& h_score)
     {
         text.setString("    DON'T GIVE UP!\n    KEEP TRYING!");
     }
+    text.setPosition({ 500, 600 });
+    text.setString("PRESS ENTER TO RESTART LEVEL\nPRESS SPACE TO CHANGE LEVEL\n       PRESS ESC TO EXIT");
     window.getWindow().draw(text);
+}
+
+int Game::restartGame()
+{
+    while (window.getWindow().isOpen())
+    {
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
+        {
+
+            return RESTART;
+
+        }
+        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+        {
+            return CLOSE;
+        }
+        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+        {
+            return CHANGE_LVL;
+        }
+    }
 }
