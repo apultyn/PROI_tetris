@@ -14,7 +14,6 @@ public:
 	void drawPlayfield() const;
 	Tetromino getNewTetromino() const;
 	void deleteAnimation(const std::vector<int>&) const;
-	//void setPlayfield(const Playfield&);
 	int startGame();
 	Game(Window& window, int wait_time=500);
 	int getWaitTime();

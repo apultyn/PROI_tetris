@@ -170,10 +170,6 @@ void Game::deleteAnimation(const std::vector<int>& rows) const
     
 }
 
-//void Game::setPlayfield(const Playfield& playfield)
-//{
-//    this->playfield = playfield;
-//}
 
 int Game::startGame()
 {
@@ -380,8 +376,6 @@ int Game::startGame()
             std::this_thread::sleep_for(std::chrono::seconds(3));
             game_over.stop();
             return restartGame();
-           // this->startGame();
-            //window.getWindow().close();
         }
         window.getWindow().display();
 
