@@ -12,8 +12,14 @@ constexpr int OUTLINE_THICKNESS = -2;
 constexpr int EASY = 500;
 constexpr int MEDIUM = 150;
 constexpr int HARD = 50;
+constexpr int DRAW_SIZE = CELL_SIZE * RESIZE;
+constexpr int WINDOW_WIDTH = DRAW_SIZE * WIDTH * 2;
+constexpr int WINDOW_HEIGHT = DRAW_SIZE * HEIGHT;
+constexpr int RESTART = 1;
+constexpr int CLOSE = 2;
+constexpr int CHANGE_LVL = 3;
 const enum colors { GREY, SALMON, ORANGE, YELLOW, GREEN, CYAN, PURPLE, RED,
-DARK_ORANGE, SANDY_BROWN, DARK_GREEN, BLUE, DARK_PURPLE, NAVY, DARK_MEDIUM_BLUE };
+DARK_ORANGE, SANDY_BROWN, DARK_GREEN, BLUEBONNET_BLUE, DARK_PURPLE, STEEL_BLUE, ULTRAMARINE_BLUE };
 
 const sf::Color GREY_COLOR(41, 44, 51);
 const sf::Color SALMON_COLOR(253, 63, 89);
@@ -26,7 +32,7 @@ const sf::Color RED_COLOR(234, 20, 28);
 const sf::Color DARK_ORANGE_COLOR(254, 72, 25);
 const sf::Color SANDY_BROWN_COLOR(255, 145, 12);
 const sf::Color DARK_GREEN_COLOR(57, 137, 47);
-const sf::Color BLUE_COLOR(0, 119, 211);
+const sf::Color BLUEBONNET_BLUE_COLOR(28, 28, 240);
 const sf::Color DARK_PURPLE_COLOR(120, 37, 111);
-const sf::Color NAVY_COLOR(46, 46, 132);
-const sf::Color DARK_MEDIUM_BLUE_COLOR(72, 93, 197);
+const sf::Color STEEL_BLUE_COLOR(70, 130, 180);
+const sf::Color ULTRAMARINE_BLUE_COLOR(65, 102, 245);
