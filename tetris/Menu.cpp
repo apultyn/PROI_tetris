@@ -15,7 +15,7 @@ Menu::Menu(Window& window) : window(window)
     menu_sound.setVolume(50);
 };
 
-void Menu::openMenu()
+int Menu::openMenu()
 {
     menu_sound.play();
 
@@ -79,11 +79,8 @@ void Menu::openMenu()
             drawAll();
             window.getWindow().display();
             std::this_thread::sleep_for(std::chrono::milliseconds(500));
-            Game game(window, EASY);
             menu_sound.stop();
-            game.startGame();
-            
-
+            return EASY;
         }
         else if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && (medium_bounds.contains(localPosition.x, localPosition.y)))
         {
@@ -98,10 +95,9 @@ void Menu::openMenu()
             medium.setScale(1, 1);
             medium_rect.setScale(1, 1);
             window.getWindow().display();
-            std::this_thread::sleep_for(std::chrono::milliseconds(500));
-            Game game(window, MEDIUM);
+            std::this_thread::sleep_for(std::chrono::milliseconds(500)); 
             menu_sound.stop();
-            game.startGame();
+            return MEDIUM;
         }
         else if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && (hard_bounds.contains(localPosition.x, localPosition.y)))
         {
@@ -118,9 +114,9 @@ void Menu::openMenu()
             medium_rect.setScale(1, 1);
             window.getWindow().display();
             std::this_thread::sleep_for(std::chrono::milliseconds(500));
-            Game game(window, HARD);
             menu_sound.stop();
-            game.startGame();
+            return HARD;
+
         }
         window.getWindow().draw(sprite);
         window.getWindow().draw(sprite_1);

@@ -23,7 +23,7 @@ private:
 	sf::Music menu_sound;
 public:
 	Menu(Window& window);
-	void openMenu();
+	int openMenu();
 	void drawAll();
 };
 
