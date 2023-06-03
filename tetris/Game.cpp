@@ -294,14 +294,14 @@ int Game::startGame()
                     {
                         piece.moveUp();
                     }
-                    std::this_thread::sleep_for(std::chrono::milliseconds(25));
+                    std::this_thread::sleep_for(std::chrono::milliseconds(50));
                     break;
                 default:
                     break;
                 }
                 drawPlayfield();
                 drawTetromino(piece);
-                std::this_thread::sleep_for(std::chrono::milliseconds(50));
+                std::this_thread::sleep_for(std::chrono::milliseconds(75));
             }
         }
 
