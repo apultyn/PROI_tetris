@@ -418,7 +418,8 @@ void Game::printEnd(int& h_score)
     {
         text.setString("    DON'T GIVE UP!\n    KEEP TRYING!");
     }
-    text.setPosition({ 500, 600 });
+    window.getWindow().draw(text);
+    text.setPosition({ 500, 700 });
     text.setString("PRESS ENTER TO RESTART LEVEL\nPRESS SPACE TO CHANGE LEVEL\n       PRESS ESC TO EXIT");
     window.getWindow().draw(text);
 }
